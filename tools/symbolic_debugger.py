@@ -40,6 +40,20 @@ def suggest_balance(seph):
     rules = API["balancing_rules"]  
     return rules.get(seph, None)
 
+def analyze(text):
+    """
+    Module entry point for analyzing text.
+    Returns a dict with 'dominant' and 'suggestion'.
+    """
+    tokens = tokenize(text)
+    counts = detect_counts(tokens)
+    if not counts:
+        return {"dominant": None, "suggestion": None}
+    
+    dom = dominant_sephira(counts)
+    bal = suggest_balance(dom)
+    return {"dominant": dom, "suggestion": bal}
+
 def main():  
     if len(sys.argv) < 2:  
         print("Usage: python symbolic_debugger.py \"<text>\"")  
