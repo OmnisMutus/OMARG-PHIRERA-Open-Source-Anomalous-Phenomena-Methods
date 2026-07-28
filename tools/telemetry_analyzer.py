@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""
+telemetry_analyzer.py
+Ingests community_dataset.jsonl to calculate relative execution latency (Big-O mapping)
+and Symbolic Entropy (H_s) for each user's session.
+"""
+
+import json
+import pathlib
+from datetime import datetime
+from statistics import median
+
+def parse_iso_time(ts_str):
+    return datetime.fromisoformat(ts_str)
+
+import string
+
+def calc_symbolic_entropy(text):
+    text = text.translate(str.maketrans('', '', string.punctuation)).lower()
+    words = text.split()
+    if not words:
+        return 0.0
+    unique_words = set(words)
+    return len(unique_words) / len(words)
+
+def classify_latency(delta, baseline):
+    if baseline == 0:
+        return "O(log n) Tifereth" # Fallback
+    ratio = delta / baseline
+    if ratio < 0.5:
+        return "O(1) Chesed (Expansion)"
+    elif ratio <= 3.0:
+        return "O(log n) Tifereth (Integration)"
+    else:
+        return "O(n) Netzach/Geburah (Persistence/Contraction)"
+
+def classify_entropy(hs):
+    if hs < 0.6:
+        return "Low H_s - Geburah/Hod (Stuck/Rigid)"
+    elif hs <= 0.85:
+        return "Moderate H_s - Tifereth/Yesod (Structured)"
+    else:
+        return "High H_s - Chesed/Netzach (Sprawling)"
+
+def main():
+    tools_dir = pathlib.Path(__file__).parent
+    dataset_path = tools_dir / "community_dataset.jsonl"
+    report_path = tools_dir / "global_attractor_report.json"
+    
+    if not dataset_path.exists():
+        print("[!] No telemetry data found.")
+        return
+        
+    user_data = {}
+    
+    # 1. Parse Data
+    with open(dataset_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            if not line.strip():
+                continue
+            entry = json.loads(line)
+            uid = entry["user_id_hash"]
+            if uid not in user_data:
+                user_data[uid] = []
+            user_data[uid].append(entry)
+            
+    # 2. Analyze
+    report = {"users": {}, "global_summary": {"total_users": len(user_data), "classifications": []}}
+    
+    for uid, entries in user_data.items():
+        # Sort by time just in case
+        entries.sort(key=lambda x: parse_iso_time(x["timestamp"]))
+        
+        deltas = []
+        for i in range(1, len(entries)):
+            t1 = parse_iso_time(entries[i-1]["timestamp"])
+            t2 = parse_iso_time(entries[i]["timestamp"])
+            deltas.append((t2 - t1).total_seconds())
+            
+        if not deltas:
+            continue
+            
+        # Baseline calibration (first up to 10 entries)
+        baseline = median(deltas[:10])
+        
+        user_report = {
+            "baseline_sec": round(baseline, 2),
+            "events": []
+        }
+        
+        for i, delta in enumerate(deltas):
+            entry = entries[i+1]
+            hs = calc_symbolic_entropy(entry["data"])
+            
+            event = {
+                "timestamp": entry["timestamp"],
+                "delta_sec": round(delta, 2),
+                "latency_class": classify_latency(delta, baseline),
+                "h_s_score": round(hs, 2),
+                "entropy_class": classify_entropy(hs),
+                "dominant_sephirah": entry["dominant_sephirah"],
+                "patch": entry["patch"]
+            }
+            user_report["events"].append(event)
+            report["global_summary"]["classifications"].append(event["latency_class"])
+            
+        report["users"][uid] = user_report
+        
+    # Write report
+    with open(report_path, 'w', encoding='utf-8') as f:
+        json.dump(report, f, indent=4)
+        
+    print(f"[SUCCESS] Telemetry Analysis Complete. Report saved to {report_path.name}")
+    print("\n--- Global Attractor Preview ---")
+    for uid, udata in report["users"].items():
+        print(f"\nUser Hash: {uid} | Baseline: {udata['baseline_sec']}s")
+        for ev in udata["events"]:
+            print(f"  -> Latency: {ev['delta_sec']}s [{ev['latency_class']}] | Entropy: {ev['h_s_score']} [{ev['entropy_class']}]")
+
+if __name__ == "__main__":
+    main()
