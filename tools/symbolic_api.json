@@ -402,7 +402,7 @@
     "balancing_rules": {
         "Hod": "Netzach",
         "Netzach": "Hod",
-        "Geburah": "Chesed",
+        "Geburah": "Geburah",
         "Chesed": "Geburah",
         "Yesod": "Tiphareth",
         "Tiphareth": "Yesod",
