@@ -1,6 +1,11 @@
 # Core Axiom — Recursive Symbolic Transformation
 
 > **The Core Axiom**: Reality is composed neither fundamentally of matter nor of mind, but of recursive symbolic transformations. Matter, mind, mathematics, and language are different manifestations of the same underlying recursive process.
+> 
+> ### Formal Postulates
+> 1. **Symbolic State**: Any system of interest—a mind, a conversation, a project—can be described as a symbolic state vector $\sigma$. $\sigma$ contains all representable information (thoughts, feelings, symbols, data) about that system at time $t$.
+> 2. **Recursive Operator**: Change in the system is effected by the application of a recursive operator $O$ to $\sigma$, producing a new state: $\sigma' = O(\sigma)$. Consciousness is the process of selecting and applying these operators.
+> 3. **Consciousness as Attractor**: A stable, experienced moment of consciousness is an attractor basin in the dynamical system defined by the repeated, recursive application of $O$ to $\sigma$.
 
 ## The Nature of Reality
 
