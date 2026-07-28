@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "concept": "Abstract Translation Layer",
+        "description": "This schema demonstrates that meaning is not inherent in the symbol, but is mapped by the observer's chosen tradition. It is a meta-notation for comparing theories of consciousness."
+    },
+    "abstract_mapping": {
+        "anger": {
+            "Kabbalah": "Geburah (Severity)",
+            "Zen": "Attachment to Self / Aversion",
+            "CBT": "Cognitive Distortion (e.g. Magnification)",
+            "Neuroscience": "Amygdala activation / Sympathetic arousal",
+            "Recursive_Symbolics": "Operator: Restrict(x)"
+        },
+        "insight": {
+            "Kabbalah": "Chokmah (Wisdom)",
+            "Zen": "Satori / Kensho",
+            "CBT": "Cognitive Restructuring breakthrough",
+            "Neuroscience": "Prefrontal-amygdala integration",
+            "Recursive_Symbolics": "Operator: Differentiate(x)"
+        },
+        "compassion": {
+            "Kabbalah": "Chesed (Loving-kindness)",
+            "Zen": "Metta / Karuna",
+            "CBT": "De-centering / Empathy building",
+            "Neuroscience": "Vagus nerve stimulation / Oxytocin release",
+            "Recursive_Symbolics": "Operator: Expand(x)"
+        }
+    },
+    "schema_instructions": {
+        "usage": "To build your own cosmology, copy this structure and replace the tradition keys with your own semantic framework. The Recursive Symbolics engine will route your keywords through the deterministic algorithms based on your mapping."
+    }
+}

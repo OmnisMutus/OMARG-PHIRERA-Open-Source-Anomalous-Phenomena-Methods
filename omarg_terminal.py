@@ -76,10 +76,20 @@ def main():
     # Diagnosis
     analysis = analyze(state_input)
     sephira = analysis.get("dominant") or "Daath"
+    entropy = analysis.get("entropy", 0.0)
     
     sort_fn, algo_name = ALGO_MAP.get(sephira, (merge_sort, "Merge Sort"))
 
     print("\n--- 2. UNFOLDING ---")
+    
+    import random
+    caveats = [
+        "This is a snapshot, not a score.",
+        "Measures coherence, not correctness.",
+        "Pattern detection, not diagnosis."
+    ]
+    caveat = random.choice(caveats)
+    print(f"H_s (Entropy): {entropy:.2f} | {caveat}")
     print(f"Diagnosis: {sephira}")
     print(f"Algorithm: {algo_name}")
     print(f"Tohu (Chaos): {tohu_array}")

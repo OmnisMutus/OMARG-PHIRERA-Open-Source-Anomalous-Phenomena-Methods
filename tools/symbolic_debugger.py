@@ -40,19 +40,41 @@ def suggest_balance(seph):
     rules = API["balancing_rules"]  
     return rules.get(seph, None)
 
+def calculate_entropy(text):
+    """
+    Calculates H_s (Entropy) based on the unique-adjacent-pair rule.
+    Returns a float between 0.0 and 1.0.
+    """
+    tokens = tokenize(text)
+    if len(tokens) < 2:
+        return 0.0
+        
+    total_pairs = 0
+    unique_pairs = set()
+    
+    for i in range(len(tokens) - 1):
+        pair = f"{tokens[i]} {tokens[i+1]}"
+        total_pairs += 1
+        unique_pairs.add(pair)
+        
+    if total_pairs == 0:
+        return 0.0
+    return len(unique_pairs) / total_pairs
+
 def analyze(text):
     """
     Module entry point for analyzing text.
-    Returns a dict with 'dominant' and 'suggestion'.
+    Returns a dict with 'dominant', 'suggestion', and 'entropy'.
     """
     tokens = tokenize(text)
+    entropy = calculate_entropy(text)
     counts = detect_counts(tokens)
     if not counts:
-        return {"dominant": None, "suggestion": None}
+        return {"dominant": None, "suggestion": None, "entropy": entropy}
     
     dom = dominant_sephira(counts)
     bal = suggest_balance(dom)
-    return {"dominant": dom, "suggestion": bal}
+    return {"dominant": dom, "suggestion": bal, "entropy": entropy}
 
 def main():  
     if len(sys.argv) < 2:  
@@ -62,6 +84,7 @@ def main():
     raw = " ".join(sys.argv[1:])  
     tokens = tokenize(raw)  
     counts = detect_counts(tokens)
+    entropy = calculate_entropy(raw)
 
     if not counts:  
         print("No recognizable symbolic keywords found.")  
@@ -72,6 +95,7 @@ def main():
 
     print("\n--- Symbolic Debugger Report ---")  
     print(f"Input text   : {raw}")  
+    print(f"Hs (Entropy) : {entropy:.2f} | Measures coherence, not correctness.")
     print(f"Detected signatures:")  
     for s, c in counts.most_common():  
         print(f"  {s:10s} → {c} hit(s)")

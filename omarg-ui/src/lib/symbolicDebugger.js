@@ -79,3 +79,25 @@ export function diagnoseSephira(text) {
     
     return dominant;
 }
+
+// Calculates H_s (Entropy) based on the unique-adjacent-pair rule
+export function calculateEntropy(text) {
+    const lowerText = text.toLowerCase();
+    const tokens = lowerText.match(/\b\w+\b/g) || [];
+    
+    if (tokens.length < 2) {
+        return 0.0;
+    }
+    
+    let totalPairs = 0;
+    const uniquePairs = new Set();
+    
+    for (let i = 0; i < tokens.length - 1; i++) {
+        const pair = `${tokens[i]} ${tokens[i+1]}`;
+        totalPairs++;
+        uniquePairs.add(pair);
+    }
+    
+    if (totalPairs === 0) return 0.0;
+    return uniquePairs.size / totalPairs;
+}

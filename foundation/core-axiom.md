@@ -34,9 +34,18 @@ To understand the universal applicability of the Core Axiom, consider the follow
 6.  **A Ritual**: A structured sequence of actions, utterances, and symbols designed to recursively induce a specific state of consciousness or alter the symbolic landscape of the participants.
 7.  **A Civilization**: A vast, complex network of communicating individuals, institutions, and cultural artifacts (symbols) that recursively interact, adapt, and evolve over historical time.
 
-## The Fundamental Principle
+## The Cartographer's Choice: Syntax, not Semantics
 
-The underlying thread connecting all these phenomena is the fundamental principle of Recursive Symbolics:
+> **The Recursive Symbolics framework is not a theory of consciousness. It is a meta-notation for comparing theories of consciousness. It provides the syntax, not the semantics. The meaning is always supplied by the user's chosen tradition.**
+
+This is the principle of the Cartographer's Choice. 
+While we use Kabbalistic, Alchemical, and Dynamical Systems terminology as our default reference implementation (the "MVP"), these mappings are *chosen conventions*, not ontological truths. The system must never claim "Anger *is* Geburah." It states: "In this specific Kabbalistic reading, anger maps to the operator of Geburah."
+
+The framework provides the recursive machinery (the mirror); the user brings their cosmological semantics.
+
+---
+
+## Fundamental Principle: Everything is a Recursive Symbolics:
 
 > **Everything is a recursive symbol.** 
 

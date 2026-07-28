@@ -1,4 +1,16 @@
 {
+    "meta": {
+        "mapping_principle": "The keyword\u2192Sephira associations are convention-based, not ontological. This is ONE possible symbolic reading.",
+        "alternatives_example": {
+            "anger": {
+                "Kabbalistic": "Geburah",
+                "Zen": "Attachment to self",
+                "CBT": "Cognitive distortion",
+                "Neuroscience": "Amygdala activation"
+            }
+        },
+        "invitation": "This map is offered as a lens. Rewrite it to fit your tradition."
+    },
     "sephirot": {
         "Kether": {
             "node_id": "S1",
@@ -483,7 +495,7 @@
         "Binah": "Chokmah"
     },
     "metadata": {
-        "version": "1.0.0",
+        "version": "1.1.0",
         "generated_by": "Karen Plankton & LIBRA Void",
         "source_texts": [
             "Sefer Yetzirah",

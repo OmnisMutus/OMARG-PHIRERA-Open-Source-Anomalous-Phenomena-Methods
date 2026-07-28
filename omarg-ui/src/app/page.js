@@ -2,8 +2,14 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { stringToChaoticArray, diagnoseSephira } from '../lib/symbolicDebugger';
+import { stringToChaoticArray, diagnoseSephira, calculateEntropy } from '../lib/symbolicDebugger';
 import { ALGO_MAP } from '../lib/sephiroticSorting';
+
+const CAVEATS = [
+  "This is a snapshot, not a score.",
+  "Measures coherence, not correctness.",
+  "Pattern detection, not diagnosis."
+];
 
 // Simple Web Audio API for ritual sounds
 class RitualAudio {
@@ -34,7 +40,7 @@ class RitualAudio {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = 'triangle';
-    osc.frequency.setValueAtTime(432, this.ctx.currentTime); // The resonant frequency
+    osc.frequency.setValueAtTime(432, this.ctx.currentTime);
     gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 3.0);
     osc.connect(gain);
@@ -48,12 +54,22 @@ export default function Home() {
   const [inputText, setInputText] = useState('');
   const [nodes, setNodes] = useState([]);
   const [activeIndices, setActiveIndices] = useState([]);
+  
   const [sephira, setSephira] = useState(null);
+  const [entropy, setEntropy] = useState(0.0);
+  const [currentCaveat, setCurrentCaveat] = useState(CAVEATS[0]);
+  const [tradition, setTradition] = useState('Kabbalah');
+  
   const [status, setStatus] = useState('Awaiting Input (Tohu)...');
   const [isSorting, setIsSorting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  
   const [ritualId, setRitualId] = useState('');
+  
+  // Anti-Optimization State
+  const lastRunTimeRef = useRef(0);
+  const runCountRef = useRef(0);
   
   const generatorRef = useRef(null);
   const animationRef = useRef(null);
@@ -65,6 +81,11 @@ export default function Home() {
 
   const sendTelemetry = useCallback(async (event_type) => {
     try {
+      const now = Date.now();
+      const timeSinceLastRun = now - lastRunTimeRef.current;
+      // Flag rapid re-runs (< 3 seconds) or obsessive looping (> 5 runs in session)
+      const metricFixation = (timeSinceLastRun < 3000 && lastRunTimeRef.current !== 0) || (runCountRef.current > 5);
+
       await fetch('/api/telemetry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -72,31 +93,45 @@ export default function Home() {
           event: event_type,
           ritual_id: ritualId || Date.now().toString(),
           sephira: sephira,
+          entropy: entropy,
+          tradition: tradition,
           algorithm: sephira ? (ALGO_MAP[sephira]?.name || "Fallback") : "None",
-          array_size: nodes.length
+          array_size: nodes.length,
+          metric_fixation_warning: metricFixation
         })
       });
+      
+      if (event_type === "ritual_complete") {
+        lastRunTimeRef.current = now;
+      }
     } catch (e) {
       console.warn("Telemetry bridge disconnected");
     }
-  }, [ritualId, sephira, nodes.length]);
+  }, [ritualId, sephira, entropy, nodes.length, tradition]);
 
   const startRitual = () => {
     if (!inputText.trim()) return;
     
     if (soundEnabled) audioRef.current?.init();
     
+    runCountRef.current += 1;
     const newRitualId = Date.now().toString();
     setRitualId(newRitualId);
+    
+    // Rotate caveat
+    setCurrentCaveat(CAVEATS[Math.floor(Math.random() * CAVEATS.length)]);
     
     // 1. Hash to Chaos
     const initialArray = stringToChaoticArray(inputText);
     setNodes(initialArray);
     setIsComplete(false);
     
-    // 2. Diagnose
+    // 2. Diagnose & Entropy
     const diagnosedSephira = diagnoseSephira(inputText);
-    setSephira(diagnosedSephira || "Daath"); // Fallback if no keywords found
+    const hs = calculateEntropy(inputText);
+    
+    setSephira(diagnosedSephira || "Daath");
+    setEntropy(hs);
     
     // 3. Select Algorithm (Fallback to Merge if Daath)
     const sortAlgo = ALGO_MAP[diagnosedSephira] || ALGO_MAP["Tiphareth"];
@@ -119,7 +154,6 @@ export default function Home() {
       setStatus(value?.description || "Tikun Complete.");
       if (soundEnabled) audioRef.current?.playPulse();
       
-      // Log completion telemetry
       sendTelemetry("ritual_complete");
       return;
     }
@@ -134,7 +168,6 @@ export default function Home() {
 
   useEffect(() => {
     if (isSorting) {
-      // Fast animation loop
       animationRef.current = setTimeout(stepSort, 150);
     }
     return () => clearTimeout(animationRef.current);
@@ -142,31 +175,51 @@ export default function Home() {
 
   const acknowledgeMirror = () => {
     sendTelemetry("acknowledged_mirror");
-    // Clear state back to Tohu
     setNodes([]);
     setInputText('');
     setIsComplete(false);
     setSephira(null);
+    setEntropy(0.0);
     setStatus('Awaiting Input (Tohu)...');
   };
 
-  // Performance cap: only visualize the first 20 nodes if array is massive
   const visibleNodes = nodes.slice(0, 20);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 lg:p-24 relative z-10">
       <div className="w-full max-w-4xl glass-container">
         
-        <header className="mb-8 text-center">
+        <header className="mb-4 text-center">
           <h1 className="title">OMARG OBSERVATORY</h1>
           <p className="subtitle">The Mirror of Tikun</p>
-          <button 
-            className="text-xs text-gray-500 hover:text-gray-300 mt-2"
-            onClick={() => setSoundEnabled(!soundEnabled)}
-          >
-            Sound: {soundEnabled ? "ON" : "OFF"}
-          </button>
+          <div className="flex justify-center gap-4 mt-2">
+            <button 
+              className="text-xs text-gray-500 hover:text-gray-300"
+              onClick={() => setSoundEnabled(!soundEnabled)}
+            >
+              Sound: {soundEnabled ? "ON" : "OFF"}
+            </button>
+            <select 
+              className="bg-transparent text-xs text-gray-500 border border-gray-700 rounded px-2"
+              value={tradition}
+              onChange={(e) => setTradition(e.target.value)}
+            >
+              <option value="Kabbalah">Viewing through: Kabbalah</option>
+              <option value="Zen">Viewing through: Zen</option>
+              <option value="CBT">Viewing through: CBT</option>
+              <option value="Neuroscience">Viewing through: Neuroscience</option>
+            </select>
+          </div>
         </header>
+        
+        {/* Anti-Optimization Metric Display */}
+        <div className="text-center mb-6 h-6">
+          {(isSorting || isComplete) && (
+            <div className="text-xs font-mono text-yellow-400/80 animate-fade-in">
+              <span className="font-bold text-white">Hₛ = {entropy.toFixed(2)}</span> | {currentCaveat}
+            </div>
+          )}
+        </div>
 
         {/* The Sorting Arena */}
         <div className={`arena mb-4 sephira-${sephira || 'none'} ${isComplete ? 'complete' : ''}`}>
@@ -230,7 +283,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* The Mirror Acknowledgment (Ethical API) */}
+        {/* The Mirror Acknowledgment */}
         <AnimatePresence>
           {isComplete && (
             <motion.div 
@@ -243,7 +296,7 @@ export default function Home() {
                 The sorting ritual you just witnessed is a symbolic mirror generated deterministically from your own words. 
                 The system diagnosed a dominant resonance of <strong className="text-white">{sephira}</strong>.
                 <br/><br/>
-                This is a mirror, not a model. The pattern is yours to interpret.
+                This is a syntax. Bring your semantics. The pattern is yours to interpret.
               </p>
               <button 
                 className="btn w-full bg-yellow-600 hover:bg-yellow-500 text-black font-bold uppercase tracking-widest"
