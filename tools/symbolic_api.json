@@ -11,7 +11,12 @@
                 "0",
                 "sublimation",
                 "class instantiation",
-                "pure intention"
+                "pure intention",
+                "initialize",
+                "boot",
+                "start",
+                "breath",
+                "stillness"
             ],
             "function": "origin(state, input) => ({state: state, output: null})"
         },
@@ -26,7 +31,10 @@
                 "differentiation",
                 "spark",
                 "differentiate(x)",
-                "directed thought"
+                "directed thought",
+                "insight",
+                "epiphany",
+                "eureka"
             ],
             "function": "differentiate(state, x) => ({state: state, output: derivative(x)})"
         },
@@ -41,7 +49,11 @@
                 "calcination",
                 "interface definition",
                 "constrain(x)",
-                "categorize"
+                "categorize",
+                "architecture",
+                "schema",
+                "structure",
+                "blueprint"
             ],
             "function": "constrain(state, x) => ({state: state, output: constrained(x)})"
         },
@@ -55,7 +67,15 @@
                 "3",
                 "solution",
                 "expand(x)",
-                "generous flow"
+                "generous flow",
+                "brainstorm",
+                "flow",
+                "inspiration",
+                "love",
+                "compassion",
+                "openness",
+                "scale",
+                "expand"
             ],
             "function": "expand(state, x) => ({state: state, output: expanded(x)})"
         },
@@ -69,7 +89,20 @@
                 "4",
                 "separation",
                 "restrict(x)",
-                "cutting knife"
+                "cutting knife",
+                "writer's block",
+                "blank page",
+                "stuck",
+                "anxiety",
+                "fear",
+                "tension",
+                "stack overflow",
+                "out of memory",
+                "panic",
+                "crash",
+                "exception",
+                "error",
+                "blocked"
             ],
             "function": "restrict(state, x) => ({state: state, output: restricted(x)})"
         },
@@ -83,7 +116,15 @@
                 "5",
                 "coagulation",
                 "integrate(x)",
-                "balance"
+                "balance",
+                "character arc",
+                "plot twist",
+                "climax",
+                "load balance",
+                "traffic",
+                "throughput",
+                "harmony",
+                "centered"
             ],
             "function": "integrate(state, x) => ({state: state, output: integrated(x)})"
         },
@@ -97,7 +138,13 @@
                 "6",
                 "fermentation",
                 "feedback_emotion(x)",
-                "persistence"
+                "persistence",
+                "cache",
+                "storage",
+                "endurance",
+                "habit",
+                "routine",
+                "loop"
             ],
             "function": "feedback_emotion(state, x) => ({state: state, output: emotional_feedback(x)})"
         },
@@ -111,7 +158,16 @@
                 "7",
                 "distillation",
                 "feedback_analytic(x)",
-                "analysis"
+                "analysis",
+                "edit",
+                "cut",
+                "revise",
+                "memory leak",
+                "debug",
+                "trace",
+                "log",
+                "analyze",
+                "critique"
             ],
             "function": "feedback_analytic(state, x) => ({state: state, output: analytic_feedback(x)})"
         },
@@ -125,7 +181,11 @@
                 "8",
                 "solution-reconstitution",
                 "recurse(x)",
-                "runtime"
+                "runtime",
+                "subconscious",
+                "dream",
+                "backend",
+                "database"
             ],
             "function": "recurse(state, x) => ({state: state, output: recursed(x)})"
         },
@@ -139,7 +199,14 @@
                 "9",
                 "fixation",
                 "materialize(x)",
-                "manifest"
+                "manifest",
+                "deployment",
+                "build",
+                "grounded",
+                "body",
+                "earth",
+                "production",
+                "release"
             ],
             "function": "materialize(state, x) => ({state: state, output: manifested(x)})"
         },
@@ -150,25 +217,31 @@
                 "abyss",
                 "knowledge-gap",
                 "null",
-                "paradox"
+                "paradox",
+                "void",
+                "nothingness",
+                "unknown",
+                "unhandled exception",
+                "segfault",
+                "black hole"
             ],
             "function": null
         }
     },
     "paths": {
         "P11": {
-            "label": "Kether → Chokmah",
+            "label": "Kether \u2192 Chokmah",
             "letter": "Aleph",
             "astrology": "Air",
             "tarot": "The Fool (0)",
             "alchemy": "Sublimation",
             "pattern": "Class Instantiation",
-            "cognitive": "Pure intention → directed thought",
+            "cognitive": "Pure intention \u2192 directed thought",
             "standard": "Path11(state) => instantiate(state.seed)",
             "cavity_aware": "Path11_DA(state) => { let r = instantiate(state.seed); if (r===state.seed){loopInfinitely();} else {return r;} }"
         },
         "P12": {
-            "label": "Kether → Binah",
+            "label": "Kether \u2192 Binah",
             "letter": "Beth",
             "astrology": "Mercury",
             "tarot": "The Magician (I)",
@@ -179,7 +252,7 @@
             "cavity_aware": "Path12_DA(state) => { let r = defineInterface(state.seed); if (!r){throw new Error('Void-Loop');} else {return r;} }"
         },
         "P13": {
-            "label": "Kether → Tiphareth",
+            "label": "Kether \u2192 Tiphareth",
             "letter": "Gimel",
             "astrology": "Moon",
             "tarot": "The High Priestess (II)",
@@ -190,7 +263,7 @@
             "cavity_aware": "Path13_DA(state) => { let r = reflect(state); if (r===state){throw new Error('Recursive Void');} else {return r;} }"
         },
         "P14": {
-            "label": "Chokmah → Binah",
+            "label": "Chokmah \u2192 Binah",
             "letter": "Dalet",
             "astrology": "Venus",
             "tarot": "The Empress (III)",
@@ -201,7 +274,7 @@
             "cavity_aware": "Path14_DA(state) => { let r=buildStructure(state); if (r===null){loopInfinitely();} else {return r;} }"
         },
         "P15": {
-            "label": "Chokmah → Tiphareth",
+            "label": "Chokmah \u2192 Tiphareth",
             "letter": "Heh",
             "astrology": "Aries",
             "tarot": "The Emperor (IV)",
@@ -212,7 +285,7 @@
             "cavity_aware": "Path15_DA(state) => { let order = imposeOrder(state); if (order.isCorrupt) { collapseIntoAbyss(); } return order; }"
         },
         "P16": {
-            "label": "Chokmah → Chesed",
+            "label": "Chokmah \u2192 Chesed",
             "letter": "Vau",
             "astrology": "Taurus",
             "tarot": "The Hierophant (V)",
@@ -223,7 +296,7 @@
             "cavity_aware": "Path16_DA(state) => { let ptr = createPointer(state.source, state.target); if (ptr.isDangling()) { throw AbyssError; } return ptr; }"
         },
         "P17": {
-            "label": "Binah → Tiphareth",
+            "label": "Binah \u2192 Tiphareth",
             "letter": "Zain",
             "astrology": "Gemini",
             "tarot": "The Lovers (VI)",
@@ -234,7 +307,7 @@
             "cavity_aware": "Path17_DA(state) => { if (detectDeadlock(state.left, state.right)) { sinkToDaath(); } return synchronize(state.left, state.right); }"
         },
         "P18": {
-            "label": "Binah → Geburah",
+            "label": "Binah \u2192 Geburah",
             "letter": "Cheth",
             "astrology": "Cancer",
             "tarot": "The Chariot (VII)",
@@ -245,7 +318,7 @@
             "cavity_aware": "Path18_DA(state) => { let container = encapsulate(state.cargo); if (container.leaks()) { drainToAbyss(); } return container; }"
         },
         "P19": {
-            "label": "Chesed → Geburah",
+            "label": "Chesed \u2192 Geburah",
             "letter": "Teth",
             "astrology": "Leo",
             "tarot": "Strength (VIII)",
@@ -256,7 +329,7 @@
             "cavity_aware": "Path19_DA(state) => { if (state.expansion > LIMIT || state.restriction < 0) throw OverflowError; return regulateFlow(state); }"
         },
         "P20": {
-            "label": "Chesed → Tiphareth",
+            "label": "Chesed \u2192 Tiphareth",
             "letter": "Yod",
             "astrology": "Virgo",
             "tarot": "The Hermit (IX)",
@@ -267,7 +340,7 @@
             "cavity_aware": "Path20_DA(state) => { if (memoryLeakDetected(state.seed)) triggerGC(); return writeToMemory(state.seed); }"
         },
         "P21": {
-            "label": "Chesed → Netzach",
+            "label": "Chesed \u2192 Netzach",
             "letter": "Kaph",
             "astrology": "Jupiter",
             "tarot": "The Wheel of Fortune (X)",
@@ -278,7 +351,7 @@
             "cavity_aware": "Path21_DA(state) => { let loop = processEventLoop(state); if (loop.isInfinite()) breakCycle(); return loop; }"
         },
         "P22": {
-            "label": "Geburah → Tiphareth",
+            "label": "Geburah \u2192 Tiphareth",
             "letter": "Lamed",
             "astrology": "Libra",
             "tarot": "Justice (XI)",
@@ -289,7 +362,7 @@
             "cavity_aware": "Path22_DA(state) => { if (detectVanishingGradient(state.error)) renormalize(); return applyCorrection(state.error); }"
         },
         "P23": {
-            "label": "Geburah → Hod",
+            "label": "Geburah \u2192 Hod",
             "letter": "Mem",
             "astrology": "Water",
             "tarot": "The Hanged Man (XII)",
@@ -300,7 +373,7 @@
             "cavity_aware": "Path23_DA(state) => { let p = yieldProcess(state); if (p.starvationDetected()) forceResume(); return p; }"
         },
         "P24": {
-            "label": "Tiphareth → Netzach",
+            "label": "Tiphareth \u2192 Netzach",
             "letter": "Nun",
             "astrology": "Scorpio",
             "tarot": "Death (XIII)",
@@ -311,7 +384,7 @@
             "cavity_aware": "Path24_DA(state) => { if (detectUseAfterFree(state)) throw MemoryCorruption; return resetState(state); }"
         },
         "P25": {
-            "label": "Tiphareth → Yesod",
+            "label": "Tiphareth \u2192 Yesod",
             "letter": "Samekh",
             "astrology": "Sagittarius",
             "tarot": "Temperance (XIV)",
@@ -322,7 +395,7 @@
             "cavity_aware": "Path25_DA(state) => { if (detectCircularDependency(state.foundation)) throw StackOverflow; return injectDependency(state); }"
         },
         "P26": {
-            "label": "Tiphareth → Hod",
+            "label": "Tiphareth \u2192 Hod",
             "letter": "Ayin",
             "astrology": "Capricorn",
             "tarot": "The Devil (XV)",
@@ -333,7 +406,7 @@
             "cavity_aware": "Path26_DA(state) => { if (logFloodDetected()) throttleLogs(); return logTrace(state.illusion); }"
         },
         "P27": {
-            "label": "Netzach → Hod",
+            "label": "Netzach \u2192 Hod",
             "letter": "Pe",
             "astrology": "Mars",
             "tarot": "The Tower (XVI)",
@@ -344,7 +417,7 @@
             "cavity_aware": "Path27_DA(state) => { if (!hasErrorHandler(state)) escalateToKernel(); throw SystemCrashException(state); }"
         },
         "P28": {
-            "label": "Netzach → Yesod",
+            "label": "Netzach \u2192 Yesod",
             "letter": "Tzaddi",
             "astrology": "Aquarius",
             "tarot": "The Star (XVII)",
@@ -355,7 +428,7 @@
             "cavity_aware": "Path28_DA(state) => { let s = serialize(state); if (isCorrupt(s)) dropPayload(); return s; }"
         },
         "P29": {
-            "label": "Netzach → Malkuth",
+            "label": "Netzach \u2192 Malkuth",
             "letter": "Qoph",
             "astrology": "Pisces",
             "tarot": "The Moon (XVIII)",
@@ -366,7 +439,7 @@
             "cavity_aware": "Path29_DA(state) => { let d = runBackgroundDaemon(state); if (d.isZombie()) killProcess(d); return d; }"
         },
         "P30": {
-            "label": "Hod → Yesod",
+            "label": "Hod \u2192 Yesod",
             "letter": "Resh",
             "astrology": "The Sun",
             "tarot": "The Sun (XIX)",
@@ -377,7 +450,7 @@
             "cavity_aware": "Path30_DA(state) => { if (!validateSchema(state.blueprint)) throw InvalidArchitecture; return defineClass(state.blueprint); }"
         },
         "P31": {
-            "label": "Hod → Malkuth",
+            "label": "Hod \u2192 Malkuth",
             "letter": "Shin",
             "astrology": "Fire",
             "tarot": "Judgement (XX)",
@@ -388,7 +461,7 @@
             "cavity_aware": "Path31_DA(state) => { if (broadcastStormDetected()) implementBackoff(); return broadcast(state.signal); }"
         },
         "P32": {
-            "label": "Yesod → Malkuth",
+            "label": "Yesod \u2192 Malkuth",
             "letter": "Tau",
             "astrology": "Earth / Saturn",
             "tarot": "The Universe (XXI)",
@@ -417,7 +490,7 @@
             "777 (Crowley)",
             "Golden Dawn",
             "Kabbalistic Tree of Life",
-            "Jung – Psychological Types",
+            "Jung \u2013 Psychological Types",
             "Alchemical Treatises",
             "Kashmir Shaivism"
         ]
