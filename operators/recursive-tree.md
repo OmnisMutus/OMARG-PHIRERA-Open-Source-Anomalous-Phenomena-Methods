@@ -66,3 +66,85 @@ graph TD
 ```
 
 *The recursive flow cascades from 1 to 10. Upon reaching Identity (Malkuth), the manifested output is fed back as the Origin for a higher-order recursive sequence.*
+
+---
+
+## APPENDIX A: Cross-Tradition Node Mappings (Sephirah Level)
+
+Based on historical comparative mysticism and the universal scaffold:
+
+### 1. KETHER (כתר) - CROWN - Operator O (Origin)
+*   **Alchemy**: Prima Materia (First Matter). The un-manifested primal chaos, the massa confusa.
+*   **Jungian**: The Self (central, ordering archetype) in its transcendent, unmanifest state. The collective unconscious as potential.
+*   **Kashmir Shaivism**: Cit (pure consciousness), Para Samvit (supreme knowledge), Aham (pure I-sense). The Anuttara (the highest, unsurpassable).
+*   **Scientific Illuminism (Crowley)**: The True Will (Thelema) in its unexpressed, absolute state. The Hadit principle (infinitely contracted point).
+*   **Computer Science**: The blank state (null, 0), the universe of all possible programs (λ-Calculus top-level), the idle CPU.
+*   **Cybernetics**: The system's total potential state space before any constraints or distinctions. The Ur-Media.
+*   **Quietism / Mystical Theology**: The Deus Absconditus (Hidden God), the Dharma-Body (Dharmakāya), the Tao that cannot be named.
+*   **Quantum Physics**: The vacuum state (zero-point energy field), the universal wavefunction prior to collapse.
+
+### 2. CHOKMAH (חכמה) - WISDOM - Operator D (Differentiation)
+*   **Alchemy**: Sulfur (Sulphur) – the active, fiery, masculine principle of change and volatility. The Mercurius as active spirit.
+*   **Jungian**: The Logos principle – directed, penetrating, differentiating thought/energy. The archetype of the Wise Old Man in dynamic aspect.
+*   **Kashmir Shaivism**: The first pulsation (spanda) of consciousness, pure prakāśa (illumination) without reflective form. Śiva as Ānanda (bliss).
+*   **Scientific Illuminism**: The initial divine command, the Will-to-Express. The Hadit point expanding as a flame: "Do what thou wilt shall be the whole of the Law."
+*   **Dynamical Systems**: The initial bifurcation or perturbation that breaks symmetry and initiates a trajectory.
+
+### 3. BINAH (בינה) - UNDERSTANDING - Operator C (Constraint/Form)
+*   **Alchemy**: Salt (Sal) – the fixing, crystallizing, feminine principle that gives enduring form. The Mercurius as passive body.
+*   **Jungian**: The Eros principle – connecting, relating, containing, giving form to energy. The archetype of the Great Mother in her formative aspect.
+*   **Kashmir Shaivism**: Vimarśa (the reflective, self-aware capacity) that gives form to the light of prakāśa. Śakti as Icchā-Śakti (power of will).
+*   **Scientific Illuminism**: The intellectual formulation and comprehension of the Will. The Nuit principle (infinitely expanded circumference).
+*   **Dynamical Systems**: The boundary conditions, attractor geometry, and phase-space manifold that shape the system's evolution.
+
+### 4. CHESED (חסד) - LOVING-KINDNESS - Operator R (Relation-Expansive)
+*   **Alchemy**: The Solve stage – dissolution, making fluid, expanding possibilities, "make the fixed volatile."
+*   **Jungian**: The positive, nurturing, containing aspect of the Anima/Animus or the Great Mother archetype. The Feeling function in its positive valuation.
+*   **Kashmir Shaivism**: The expansive, creative aspect of Śakti (Icchā-Śakti – will/desire to expand). The principle of Ābhāsa (manifestation).
+*   **Computer Science**: A function that adds nodes or edges to a graph (network growth). A generative algorithm with no termination condition (e.g., infinite loop adding values).
+*   **Post-Structuralism (Deleuze & Guattari)**: Productive, connective desire that builds rhizomes, smooth space.
+
+### 5. GEBURAH (גבורה) - SEVERITY - Operator C (Constraint-Restrictive)
+*   **Alchemy**: The Separatio stage – cutting, purifying, burning away dross, "make the volatile fixed."
+*   **Jungian**: The Shadow in its role of necessary limitation, discernment, and cutting away of ego inflation. The Thinking function in its critical, analytical aspect.
+*   **Kashmir Shaivism**: The contracting, limiting, defining aspect of Śakti (Kriyā-Śakti – power of action). The principle of Vikalpa (discrimination).
+*   **Computer Science**: A filter function, constraint satisfaction algorithm, or garbage collector. A function that removes elements from a set.
+*   **Post-Structuralism**: Necessary territorialization – creating coded, structured, striated space from the flow.
+
+### 6. TIPHARETH (תפארת) - BEAUTY - Operator I (Integration)
+*   **Alchemy**: The Rubedo (Reddening) stage – the perfected, integrated, "kingly" state. The Sun (Sol), the Philosopher's Stone as conjunctio oppositorum.
+*   **Jungian**: The Ego in its ideal, balanced, conscious relation to the Self. The central archetype of the Hero who has integrated the opposites.
+*   **Kashmir Shaivism**: The embodied heart (hṛdaya) where Śiva (consciousness) and Śakti (energy) are united in the Spanda (vibration). The Antaḥkaraṇa (inner organ) in its purified state.
+*   **Scientific Illuminism**: The state of Knowledge and Conversation of the Holy Guardian Angel (HGA). The accomplished will, the Solar consciousness.
+*   **Cybernetics**: Homeostasis achieved at a high level of complexity – the system's optimal, self-regulating operating state.
+*   **Dynamical Systems**: A stable, complex, multi-dimensional attractor (e.g., Lorenz attractor, strange attractor) that harmonizes multiple conflicting dynamics.
+
+### 7. NETZACH (נצח) - VICTORY - Operator Fₑ (Feedback-Emotional/Persistent)
+*   **Alchemy**: The volatile principle, the fiery, passionate, mercurial spirit that must be "fixed." Associated with Mercury.
+*   **Jungian**: The Feeling function in its dynamic, relational, value-driven aspect. The archetype of the Anima as the soul of feeling.
+*   **Kashmir Shaivism**: The energy of action and persistence (Kriyā-Śakti) in its instinctual, emotional, rhythmic form.
+*   **Computer Science**: A while-loop driven by an emotional/state condition: `while(frustrated) { tryAgain(); }` or `while(loved) { give(); }`.
+*   **Post-Structuralism**: Desiring-production in its raw, unfiltered, libidinal flow.
+
+### 8. HOD (הוד) - SPLENDOR - Operator Fᵢ (Feedback-Analytical)
+*   **Alchemy**: The fixed principle, the crystallized, intellectual, structuring salt that must be "volatilized." Associated with Salt.
+*   **Jungian**: The Thinking function in its structuring, logical, analytical, and representational aspect. The archetype of the Trickster as the intellect.
+*   **Kashmir Shaivism**: The energy of knowledge (Jñāna-Śakti) in its formal, structured, linguistic expression.
+*   **Computer Science**: A for-loop or recursive function with clear, logical termination conditions: `for(i=0; i<n; i++) { process(i); }`.
+*   **Post-Structuralism**: The machinic assemblage – the coding, structuring, and abstract machine that organizes flows.
+
+### 9. YESOD (יסוד) - FOUNDATION - Operator R₂ (Recursion-Personal)
+*   **Alchemy**: The alembic or vessel – the container where the entire process happens. Also the personal "base metal" (lead) to be transformed.
+*   **Jungian**: The Personal Unconscious and the Ego-Complex – the "I" as a habitual structure of memories, complexes, and adaptive patterns.
+*   **Kashmir Shaivism**: The Antaḥkaraṇa (inner instrument) – manas (mind), buddhi (intellect), ahaṅkāra (ego), citta (memory).
+*   **Computer Science**: The runtime environment / stack frame – where the program's local variables (personality traits), call history (memories), and current instruction pointer (focus) reside.
+*   **Cybernetics**: The system's memory (short & long-term) and learned behavioral routines (habits).
+*   **Dynamical Systems**: The basin of attraction for the individual's habitual thoughts, emotions, and behaviors – a local minimum in the psychic landscape.
+
+### 10. MALKUTH (מלכות) - KINGDOM - Operator I₂ (Identity-Output)
+*   **Alchemy**: The finished Elixir or Philosopher's Stone in its tangible, world-transmuting form. The "multiplication" of the Stone.
+*   **Jungian**: The Persona – the mask adapted to the external world, and the external, lived life as it appears to others and to the conscious ego.
+*   **Kashmir Shaivism**: The fully manifested universe of tattvas (elements) – from prakṛti (nature) down to pṛthivī (earth). The world of differentiated experience (viśva).
+*   **Computer Science**: The program output displayed on the screen or printed. The user interface (UI). The concrete result of computation.
+*   **Cybernetics**: The system's observable behavior in its environment – the patterns of input/output that define it to an external observer.
+*   **Quietism**: The world seen as it is, without projection, after the recursive ego-process has ceased – śūnyatā (emptiness) appearing as form.
