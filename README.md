@@ -54,6 +54,7 @@ Field and experimental protocols, adapted from open-source investigation framewo
 
 ### [Practice](practice/)
 - [Practitioner Workflow](practice/practitioner-workflow.md) — How to use the framework map in practice
+- [Initiation Protocol](practice/initiation-protocol.md) — How to onboard new operators into the recursive loop
 - [Symbolic Experimentation](practice/symbolic-experimentation.md) — How to run recursive symbolic experiments
 - [Practitioner Readiness](practice/practitioner-readiness.md) — Physical conditioning and wellness
 
