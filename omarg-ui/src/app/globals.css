@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.5);
+  
+  --sephira-hod: #f59e0b; /* Orange/Splendor */
+  --sephira-geburah: #ef4444; /* Red/Severity */
+  --sephira-chokmah: #8b5cf6; /* Purple/Wisdom */
+  --sephira-tifereth: #eab308; /* Yellow/Beauty */
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Container */
+.glass-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* The Sorting Arena */
+.arena {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  height: 300px;
+  width: 100%;
+  padding: 2rem;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 70%);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sorting Nodes */
+.node {
+  width: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.node::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+.node.active {
+  transform: translateY(-10px) scale(1.05);
+  border-color: #fff;
+  z-index: 10;
+}
+
+/* Sephira specific glows */
+.sephira-Hod .node.active { box-shadow: 0 0 20px var(--sephira-hod); border-color: var(--sephira-hod); }
+.sephira-Geburah .node.active { box-shadow: 0 0 20px var(--sephira-geburah); border-color: var(--sephira-geburah); }
+.sephira-Chokmah .node.active { box-shadow: 0 0 20px var(--sephira-chokmah); border-color: var(--sephira-chokmah); }
+.sephira-Tifereth .node.active { box-shadow: 0 0 20px var(--sephira-tifereth); border-color: var(--sephira-tifereth); }
+
+/* UI Elements */
+.input-area {
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-area:focus {
+  border-color: rgba(255,255,255,0.3);
+}
+
+.btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Typography */
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #a1a1aa;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.status-text {
+  font-family: monospace;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  min-height: 1.5rem;
+}
