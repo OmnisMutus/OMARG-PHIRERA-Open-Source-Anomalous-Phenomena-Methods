@@ -2,7 +2,11 @@
  * symbolicDebugger.js
  * 
  * Ports the Python logic for text hashing and Sephira diagnosis into JS.
+ * STRICT ISOMORPHISM: This file reads symbolic_api.json to ensure 100% 
+ * parity with the Python symbolic_debugger.py.
  */
+
+import API from './symbolic_api.json' with { type: "json" };
 
 // A simple deterministic hash function to convert a string to a chaotic array of integers (Tohu)
 export function stringToChaoticArray(str) {
@@ -23,44 +27,55 @@ export function stringToChaoticArray(str) {
         arr.push((last * 7 + 13) % 100);
     }
     
-    // Cap at 20 elements for animation sanity
-    arr = arr.slice(0, 20);
-    
     // Convert to objects with unique IDs for React rendering
     return arr.map((val, idx) => ({ id: `node-${idx}-${val}`, value: val }));
 }
 
+// Prepare the keyword map just like Python:
+// keyword_map[kw.lower()] = seph
+const keywordMap = {};
+for (const [seph, data] of Object.entries(API.sephirot)) {
+    for (const kw of data.keywords) {
+        keywordMap[kw.toLowerCase()] = seph;
+    }
+}
+
 // Scans text for keywords to determine the dominant Sephira
 export function diagnoseSephira(text) {
+    // Tokenize exactly like Python: re.findall(r"\b\w+\b", text.lower())
     const lowerText = text.toLowerCase();
+    const tokens = lowerText.match(/\b\w+\b/g) || [];
     
-    const keywords = {
-        "Hod": ["scattered", "confused", "details", "overwhelmed", "anxious", "lost"],
-        "Geburah": ["rigid", "angry", "harsh", "stuck", "judgment", "cut", "worst"],
-        "Chokmah": ["split", "binary", "decision", "choice", "paralyzed", "pivot"],
-        "Tifereth": ["broken", "conflict", "balance", "torn", "heal", "peace"]
-    };
+    // Count occurrences
+    const counts = {};
+    const insertionOrder = []; // To break ties exactly like Python's Counter
     
-    let scores = { "Hod": 0, "Geburah": 0, "Chokmah": 0, "Tifereth": 0 };
-    
-    for (const [sephira, words] of Object.entries(keywords)) {
-        for (const word of words) {
-            if (lowerText.includes(word)) {
-                scores[sephira] += 1;
+    for (const t of tokens) {
+        if (keywordMap[t]) {
+            const seph = keywordMap[t];
+            if (!counts[seph]) {
+                counts[seph] = 0;
+                insertionOrder.push(seph);
             }
+            counts[seph] += 1;
         }
     }
     
-    // Find highest score
-    let highest = 0;
-    let selected = "Tifereth"; // Default fallback
+    if (Object.keys(counts).length === 0) {
+        return null;
+    }
     
-    for (const [sephira, score] of Object.entries(scores)) {
-        if (score > highest) {
-            highest = score;
-            selected = sephira;
+    // Find highest score (most_common(1)[0][0] in Python)
+    // Python's Counter.most_common() sorts by count descending, then by insertion order.
+    let dominant = null;
+    let maxCount = -1;
+    
+    for (const seph of insertionOrder) {
+        if (counts[seph] > maxCount) {
+            maxCount = counts[seph];
+            dominant = seph;
         }
     }
     
-    return selected;
+    return dominant;
 }
