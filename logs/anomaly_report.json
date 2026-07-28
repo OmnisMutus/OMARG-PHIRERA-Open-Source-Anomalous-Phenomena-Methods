@@ -1,0 +1,13 @@
+{
+    "timestamp": "2026-07-28T17:23:04.616160+00:00",
+    "target_url": "https://OmnisMutus.github.io/OMARG-PHIRERA-Open-Source-Anomalous-Phenomena-Methods/games/web_arg/index.html",
+    "status": "HTTP 404 Error",
+    "assets_verified": {
+        "hidden_pre_block": false,
+        "glitch_css_linked": false,
+        "anomaly_image_linked": false
+    },
+    "anomalies": [
+        "HTTP Error 404: Not Found"
+    ]
+}

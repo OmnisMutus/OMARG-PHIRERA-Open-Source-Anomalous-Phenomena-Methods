@@ -29,6 +29,8 @@ The philosophical and mathematical core.
 - [Three Laws](foundation/three-laws.md) — Symbols generate states, complexity increases, meaning emerges
 - [Mathematical Foundation](foundation/mathematical-foundation.md) — Formal notation, transformation operators, consciousness as attractor
 - [Principle of Recursive Meaning](foundation/principle-of-recursive-meaning.md) — The meaning loop
+- [Computational Kabbalah](foundation/computational-kabbalah.md) — The poetics of process and operational mapping
+- [The ACK Protocol](foundation/ack-protocol.md) — The phenomenological signatures of the system's ultimate telos
 
 ### [Operators](operators/)
 The symbolic operator system.

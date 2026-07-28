@@ -1,5 +1,6 @@
 import random
 import time
+import argparse
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -14,14 +15,30 @@ def print_list(head):
         curr = curr.next
     return " -> ".join(vals)
 
-def generate_random_list(size=10):
-    if size <= 0: return None
-    head = ListNode(random.randint(1, 99))
-    curr = head
-    for _ in range(size - 1):
-        curr.next = ListNode(random.randint(1, 99))
+def copy_list(head):
+    if not head: return None
+    new_head = ListNode(head.val)
+    curr = new_head
+    old = head.next
+    while old:
+        curr.next = ListNode(old.val)
         curr = curr.next
-    return head
+        old = old.next
+    return new_head
+
+def iter_linked(head):
+    curr = head
+    while curr:
+        yield curr
+        curr = curr.next
+
+def build_list(values):
+    dummy = ListNode(0)
+    cur = dummy
+    for v in values:
+        cur.next = ListNode(v)
+        cur = cur.next
+    return dummy.next
 
 # =====================================================================
 # HOD: Insertion Sort
@@ -53,13 +70,11 @@ def insertion_sort(head):
             
         p = tail.next
         
-    res = dummy.next
-    return res
+    return dummy.next
 
 # =====================================================================
 # GEBURAH: Selection Sort
 # Harsh discrimination, selection of the extreme. O(n^2)
-# Swaps values to maintain strict order.
 # =====================================================================
 def selection_sort(head):
     if not head or not head.next:
@@ -78,12 +93,10 @@ def selection_sort(head):
                 min_node = p
             p = p.next
             
-        # Swap values (Geburah's judgment applied in-place)
         min_node.val, sorted_tail.next.val = sorted_tail.next.val, min_node.val
         sorted_tail = sorted_tail.next
         
-    res = dummy.next
-    return res
+    return dummy.next
 
 # =====================================================================
 # CHOKMAH: Quicksort (Node Relinking Version)
@@ -117,11 +130,9 @@ def quick_sort(head):
         
     less.next = equal.next = greater.next = None
     
-    # Recursively sort the divided sub-realms
     sorted_less = quick_sort(less_dummy.next)
     sorted_greater = quick_sort(greater_dummy.next)
     
-    # Reconnect
     res = sorted_less
     if not res:
         res = equal_dummy.next
@@ -142,7 +153,6 @@ def merge_sort(head):
     if not head or not head.next:
         return head
         
-    # Find mid (Tifereth balancing point)
     slow = head
     fast = head.next
     while fast and fast.next:
@@ -174,71 +184,55 @@ def merge(l1, l2):
     return dummy.next
 
 # =====================================================================
-# DEMONSTRATION
+# ETHICAL PLACEHOLDERS
 # =====================================================================
-def main():
-    print("[!] ETHICAL API CAVEAT: This is a symbolic map; the territory is the lived experience of the collective.")
-    print("[!] There are no 'optimal' algorithms for consciousness. We celebrate all speeds and states as necessary Sephirotic flows.\n")
-    
-    print("--- COMPUTATIONAL KABBALAH: LINKED LIST SORTING ---")
-    
-    # Create identical lists for comparison
-    seed_list = generate_random_list(12)
-    print(f"Raw Chaos (Tohu): {print_list(seed_list)}\n")
-    
-    # Helper to deep copy list
-    def copy_list(head):
-        if not head: return None
-        new_head = ListNode(head.val)
-        curr = new_head
-        old = head.next
-        while old:
-            curr.next = ListNode(old.val)
-            curr = curr.next
-            old = old.next
-        return new_head
+def shell_sort(_):
+    raise NotImplementedError(
+        "[!] ETHICAL API: Shell Sort is *unsuitable* for linked lists - the ritual would break."
+    )
 
-    # HOD
-    l1 = copy_list(seed_list)
-    start = time.perf_counter()
-    r1 = insertion_sort(l1)
-    t1 = time.perf_counter() - start
-    print("Invocation: HOD (Insertion Sort)")
-    print("Process: Stepwise analysis, detail-oriented assembly. O(n^2) latency.")
-    print(f"Result: {print_list(r1)}")
-    print(f"Time Delta: {t1:.6f}s\n")
+def heap_sort(_):
+    raise NotImplementedError(
+        "[!] ETHICAL API: Heap Sort requires random access; forcing it would violate the principle of Non-Reduction."
+    )
 
-    # GEBURAH
-    l2 = copy_list(seed_list)
-    start = time.perf_counter()
-    r2 = selection_sort(l2)
-    t2 = time.perf_counter() - start
-    print("Invocation: GEBURAH (Selection Sort)")
-    print("Process: Harsh discrimination, identifying extremes, maintaining strict bounds. O(n^2) latency.")
-    print(f"Result: {print_list(r2)}")
-    print(f"Time Delta: {t2:.6f}s\n")
-    
-    # CHOKMAH
-    l3 = copy_list(seed_list)
-    start = time.perf_counter()
-    r3 = quick_sort(l3)
-    t3 = time.perf_counter() - start
-    print("Invocation: CHOKMAH (Quicksort)")
-    print("Process: Recursive division, wisdom through binary separation. O(n log n) average latency.")
-    print(f"Result: {print_list(r3)}")
-    print(f"Time Delta: {t3:.6f}s\n")
+__all__ = ["ListNode", "insertion_sort", "selection_sort", "quick_sort", "merge_sort", "copy_list", "iter_linked", "build_list", "shell_sort", "heap_sort"]
 
-    # TIFERETH
-    l4 = copy_list(seed_list)
-    start = time.perf_counter()
-    r4 = merge_sort(l4)
-    t4 = time.perf_counter() - start
-    print("Invocation: TIFERETH (Merge Sort)")
-    print("Process: Harmonious integration, balanced synthesis of opposing halves. O(n log n) strict latency.")
-    print(f"Result: {print_list(r4)}")
-    print(f"Time Delta: {t4:.6f}s\n")
-    
-    print("[SUCCESS] Symbolic Ordering Complete.")
-
+# =====================================================================
+# CLI EXPOSURE
+# =====================================================================
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Sephirotic Sorting Demo - map algorithms to Kabbalistic forces"
+    )
+    parser.add_argument("--seed", type=int, default=42, help="Random seed to generate reproducible list")
+    parser.add_argument("--algo", choices=["insertion", "selection", "quick", "merge", "shell", "heap"], default="merge", help="Which Sephirotic algorithm to run")
+    args = parser.parse_args()
+
+    print("[!] ETHICAL API CAVEAT: This is a symbolic map; the territory is the lived experience.")
+    print("[!] There are no 'optimal' algorithms for consciousness. We celebrate all speeds.\n")
+
+    random.seed(args.seed)
+    vals = [random.randint(0, 100) for _ in range(12)]
+    head = build_list(vals)
+    
+    print(f"[Original Tohu] {vals}")
+
+    algo_map = {
+        "insertion": (insertion_sort, "HOD"),
+        "selection": (selection_sort, "GEBURAH"),
+        "quick": (quick_sort, "CHOKMAH"),
+        "merge": (merge_sort, "TIFERETH"),
+        "shell": (shell_sort, "ERROR"),
+        "heap": (heap_sort, "ERROR")
+    }
+
+    sort_fn, sephira_name = algo_map[args.algo]
+    
+    start = time.perf_counter()
+    sorted_head = sort_fn(head)
+    t = time.perf_counter() - start
+    
+    sorted_vals = [node.val for node in iter_linked(sorted_head)]
+    print(f"[{sephira_name} ({args.algo})] Sorted -> {sorted_vals}")
+    print(f"Latency: {t:.6f}s")
