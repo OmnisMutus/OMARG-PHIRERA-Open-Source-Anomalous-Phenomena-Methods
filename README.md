@@ -58,7 +58,13 @@ Field and experimental protocols, adapted from open-source investigation framewo
 - [Symbolic Experimentation](practice/symbolic-experimentation.md) — How to run recursive symbolic experiments
 - [Practitioner Readiness](practice/practitioner-readiness.md) — Physical conditioning and wellness
 
+### [Tools (The API)](tools/)
+- [Symbolic Debugger](tools/symbolic_debugger.py) — Analyzes text for over-used nodes and suggests balance patches.
+- [Ritual Compiler](tools/ritual_compiler.py) — Translates a high-level intention into a concrete step-by-step path sequence.
+- [Symbolic API (JSON)](tools/symbolic_api.json) — The core machine-readable transition graph of 10 nodes and 22 paths.
+
 ### [References](references/)
+- [Glossary](docs/glossary.md) — Auto-generated quick-reference mapping esoteric symbols to computational primitives.
 - [Bibliography (Thelema Libers)](references/bibliography.md) — Local archive of reference texts
 
 ### [Community](community/)
