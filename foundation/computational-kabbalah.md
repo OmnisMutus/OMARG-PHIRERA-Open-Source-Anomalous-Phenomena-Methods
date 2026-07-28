@@ -1,8 +1,12 @@
 # Computational Kabbalah: The Poetics of Process
 
+> [!IMPORTANT]
+> **MANDATORY ETHICAL API**
+> All interactions with this module are strictly governed by the [Core Ethical Principles](file:///c:/Users/joels/Desktop/gemini%20projects/Thoth/Recursive-Symbolics/foundation/core-ethics.md). This includes the Principle of Non-Reduction and the Principle of Non-Judgment.
+
 > [!WARNING]
 > **THIS IS A POETICS, NOT A PHYSICS.**
-> The mappings contained in this document are hermeneutic lenses, narrative generators, and pattern-recognition tools. They do not claim that Kabbalah is literally a computer, nor that the human mind runs mechanical algorithms. They are a translation layer for intuition.
+> The mappings contained in this document are hermeneutic lenses, narrative generators, and pattern-recognition tools. They do not claim that Kabbalah is literally a computer, nor that the human mind runs mechanical algorithms. They are a translation layer for intuition. We are building a hermeneutic of care, not computational psychiatry.
 
 ## The Isomorphism Flow
 

@@ -25,22 +25,22 @@ def calc_symbolic_entropy(text):
 
 def classify_latency(delta, baseline):
     if baseline == 0:
-        return "O(log n) Tifereth" # Fallback
+        return "O(log n) Tifereth: Harmonious deliberation; structured balancing." # Fallback
     ratio = delta / baseline
     if ratio < 0.5:
-        return "O(1) Chesed (Expansion)"
+        return "O(1) Chesed: Expansive flow; intuitive leaping."
     elif ratio <= 3.0:
-        return "O(log n) Tifereth (Integration)"
+        return "O(log n) Tifereth: Harmonious deliberation; structured balancing."
     else:
-        return "O(n) Netzach/Geburah (Persistence/Contraction)"
+        return "O(n) Netzach/Geburah: Deep contemplation; persistent or severe engagement."
 
 def classify_entropy(hs):
     if hs < 0.6:
-        return "Low H_s - Geburah/Hod (Stuck/Rigid)"
+        return "Low H_s [Geburah/Hod]: Focused, concentrated, or severely bounded."
     elif hs <= 0.85:
-        return "Moderate H_s - Tifereth/Yesod (Structured)"
+        return "Moderate H_s [Tifereth/Yesod]: Structured, grounded, cohesive memory."
     else:
-        return "High H_s - Chesed/Netzach (Sprawling)"
+        return "High H_s [Chesed/Netzach]: Sprawling, unfettered, high-diversity exploration."
 
 def main():
     tools_dir = pathlib.Path(__file__).parent
@@ -111,6 +111,8 @@ def main():
         json.dump(report, f, indent=4)
         
     print(f"[SUCCESS] Telemetry Analysis Complete. Report saved to {report_path.name}")
+    print("\n[!] ETHICAL API CAVEAT: This is a symbolic map; the territory is the lived experience of the collective.")
+    print("[!] There are no 'optimal' metrics. We celebrate all speeds and states as necessary Sephirotic flows.")
     print("\n--- Global Attractor Preview ---")
     for uid, udata in report["users"].items():
         print(f"\nUser Hash: {uid} | Baseline: {udata['baseline_sec']}s")
