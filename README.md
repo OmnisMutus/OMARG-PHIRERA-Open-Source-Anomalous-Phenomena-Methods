@@ -53,6 +53,7 @@ Field and experimental protocols, adapted from open-source investigation framewo
 - [Transparency Charter](transparency/transparency-charter.md) — Data lifecycle, auditing, open-source commitment
 
 ### [Practice](practice/)
+- [Practitioner Workflow](practice/practitioner-workflow.md) — How to use the framework map in practice
 - [Symbolic Experimentation](practice/symbolic-experimentation.md) — How to run recursive symbolic experiments
 - [Practitioner Readiness](practice/practitioner-readiness.md) — Physical conditioning and wellness
 
