@@ -40,5 +40,21 @@ Symbolic Entropy (H_s) measures the diversity and chaos of a user's raw text inp
 *   **Quicksort**: **Chokmah/Geburah → Tifereth** (Rigorous discrimination and division). Strictly partitioning the problem space before resolving it.
 *   **Mergesort**: **Netzach/Hod → Tifereth** (Victory/detail yielding harmonious integration). Dividing all elements to their base components and weaving them back together seamlessly.
 
+## 4. The Four Worlds: A Linguistic Ontology
+Programming languages and paradigms themselves map directly to the descent of the Four Worlds, providing a framework for choosing the right tool for the state of consciousness:
+
+*   **ATZILUTH (Emanation): Pure Logic & Functional Purity.** The realm of pure will and abstract truth without mutation or decay.
+    *   *Languages*: Haskell, LISP, Pure Mathematics.
+    *   *Metaphor*: Code is a mathematical truth, an emanation of logic that simply *is*. No state, no side effects.
+*   **BRIAH (Creation): Architecture & Declarative Intent.** The realm of intellect, where blueprints are drawn but matter does not yet exist.
+    *   *Languages*: Java, C#, SQL, UML.
+    *   *Metaphor*: Heavy reliance on Interfaces and Abstract Classes—blueprints defining *what* must exist before physical implementation.
+*   **YETZIRAH (Formation): Dynamics & Symbolic Flow.** The realm of emotion and connection. Things are formed, connected, and interpreted dynamically.
+    *   *Languages*: Python, JavaScript, Ruby.
+    *   *Metaphor*: "Duck typing" (pure symbolic association) and interpretive flow. The language of glue, connecting systems without worrying about hardware.
+*   **ASSIAH (Action): Systems & Matter.** The physical realm where execution is constrained by raw hardware and physics.
+    *   *Languages*: C, C++, Rust, Assembly.
+    *   *Metaphor*: Manual memory allocation (physical space). Pointers reference literal addresses on silicon. Mistakes result in a total collapse of the physical architecture (Segmentation Fault).
+
 ## Conclusion
 By observing the community dataset through these lenses, we generate the `global_attractor_report.json`. This transforms raw computational telemetry into a collective psychological weather map, allowing the system to observe itself `observe_system(σ)` at a massive scale.
