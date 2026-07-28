@@ -253,7 +253,7 @@
             "pattern": "Load Balancing",
             "cognitive": "Taming raw expansion with necessary restriction.",
             "standard": "Path19(state) => regulateFlow(state.expansion, state.restriction)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path19_DA(state) => { if (state.expansion > LIMIT || state.restriction < 0) throw OverflowError; return regulateFlow(state); }"
         },
         "P20": {
             "label": "Chesed → Tiphareth",
@@ -264,7 +264,7 @@
             "pattern": "Write-to-Memory / Singleton",
             "cognitive": "Seeding deep insight from a place of isolation.",
             "standard": "Path20(state) => writeToMemory(state.seed)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path20_DA(state) => { if (memoryLeakDetected(state.seed)) triggerGC(); return writeToMemory(state.seed); }"
         },
         "P21": {
             "label": "Chesed → Netzach",
@@ -275,7 +275,7 @@
             "pattern": "Event Loop",
             "cognitive": "Cycling cycles. Funneling energy into habit loops.",
             "standard": "Path21(state) => processEventLoop(state.cycle)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path21_DA(state) => { let loop = processEventLoop(state); if (loop.isInfinite()) breakCycle(); return loop; }"
         },
         "P22": {
             "label": "Geburah → Tiphareth",
@@ -286,7 +286,7 @@
             "pattern": "Back-propagation",
             "cognitive": "Applying critique to adjust the model.",
             "standard": "Path22(state) => applyCorrection(state.error)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path22_DA(state) => { if (detectVanishingGradient(state.error)) renormalize(); return applyCorrection(state.error); }"
         },
         "P23": {
             "label": "Geburah → Hod",
@@ -297,7 +297,7 @@
             "pattern": "Suspend Process / Yield",
             "cognitive": "Surrender of the intellect. Suspending severity.",
             "standard": "Path23(state) => yieldProcess(state)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path23_DA(state) => { let p = yieldProcess(state); if (p.starvationDetected()) forceResume(); return p; }"
         },
         "P24": {
             "label": "Tiphareth → Netzach",
@@ -308,7 +308,7 @@
             "pattern": "Garbage Collection / Reset",
             "cognitive": "Transformation through destruction.",
             "standard": "Path24(state) => resetState(state)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path24_DA(state) => { if (detectUseAfterFree(state)) throw MemoryCorruption; return resetState(state); }"
         },
         "P25": {
             "label": "Tiphareth → Yesod",
@@ -319,7 +319,7 @@
             "pattern": "Dependency Injection",
             "cognitive": "Stabilizing the subconscious foundation.",
             "standard": "Path25(state) => injectDependency(state.foundation, state.ego)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path25_DA(state) => { if (detectCircularDependency(state.foundation)) throw StackOverflow; return injectDependency(state); }"
         },
         "P26": {
             "label": "Tiphareth → Hod",
@@ -330,7 +330,7 @@
             "pattern": "Logger / Trace",
             "cognitive": "Reflecting external feedback into analytical structures.",
             "standard": "Path26(state) => logTrace(state.illusion)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path26_DA(state) => { if (logFloodDetected()) throttleLogs(); return logTrace(state.illusion); }"
         },
         "P27": {
             "label": "Netzach → Hod",
@@ -341,7 +341,7 @@
             "pattern": "Throw Exception / Panic",
             "cognitive": "Sudden disruption of structure by raw emotional force.",
             "standard": "Path27(state) => throw SystemCrashException(state.pressure)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path27_DA(state) => { if (!hasErrorHandler(state)) escalateToKernel(); throw SystemCrashException(state); }"
         },
         "P28": {
             "label": "Netzach → Yesod",
@@ -352,7 +352,7 @@
             "pattern": "Serialization",
             "cognitive": "Encoding raw emotional energy into a symbol.",
             "standard": "Path28(state) => serialize(state.emotion)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path28_DA(state) => { let s = serialize(state); if (isCorrupt(s)) dropPayload(); return s; }"
         },
         "P29": {
             "label": "Netzach → Malkuth",
@@ -363,7 +363,7 @@
             "pattern": "Background Daemon / Keep-Alive",
             "cognitive": "Feeding physical reality with deep biological drives.",
             "standard": "Path29(state) => runBackgroundDaemon(state.drive)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path29_DA(state) => { let d = runBackgroundDaemon(state); if (d.isZombie()) killProcess(d); return d; }"
         },
         "P30": {
             "label": "Hod → Yesod",
@@ -374,7 +374,7 @@
             "pattern": "Class Definition",
             "cognitive": "Imposing clear analytical architecture onto the subconscious vessel.",
             "standard": "Path30(state) => defineClass(state.blueprint)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path30_DA(state) => { if (!validateSchema(state.blueprint)) throw InvalidArchitecture; return defineClass(state.blueprint); }"
         },
         "P31": {
             "label": "Hod → Malkuth",
@@ -385,7 +385,7 @@
             "pattern": "Emit Signal / Broadcast",
             "cognitive": "Radiating intellectual structure outward into manifestation.",
             "standard": "Path31(state) => broadcast(state.signal)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path31_DA(state) => { if (broadcastStormDetected()) implementBackoff(); return broadcast(state.signal); }"
         },
         "P32": {
             "label": "Yesod → Malkuth",
@@ -396,7 +396,7 @@
             "pattern": "Program Exit / exit(0)",
             "cognitive": "Sealing the entire recursive process into a finite, observable reality.",
             "standard": "Path32(state) => renderAndExit(state.final_form)",
-            "cavity_aware": "null"
+            "cavity_aware": "Path32_DA(state) => { if (orphanedResourcesExist()) forceCleanup(); return renderAndExit(state.final_form); }"
         }
     },
     "balancing_rules": {

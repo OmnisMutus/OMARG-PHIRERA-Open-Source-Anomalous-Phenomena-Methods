@@ -284,7 +284,7 @@ Path19(state) => regulateFlow(state.expansion, state.restriction)
 
 Cavity-aware form
 ```python  
-null  
+Path19_DA(state) => { if (state.expansion > LIMIT || state.restriction < 0) throw OverflowError; return regulateFlow(state); }  
 ```
 
 ### P20 – Chesed → Tiphareth
@@ -303,7 +303,7 @@ Path20(state) => writeToMemory(state.seed)
 
 Cavity-aware form
 ```python  
-null  
+Path20_DA(state) => { if (memoryLeakDetected(state.seed)) triggerGC(); return writeToMemory(state.seed); }  
 ```
 
 ### P21 – Chesed → Netzach
@@ -322,7 +322,7 @@ Path21(state) => processEventLoop(state.cycle)
 
 Cavity-aware form
 ```python  
-null  
+Path21_DA(state) => { let loop = processEventLoop(state); if (loop.isInfinite()) breakCycle(); return loop; }  
 ```
 
 ### P22 – Geburah → Tiphareth
@@ -341,7 +341,7 @@ Path22(state) => applyCorrection(state.error)
 
 Cavity-aware form
 ```python  
-null  
+Path22_DA(state) => { if (detectVanishingGradient(state.error)) renormalize(); return applyCorrection(state.error); }  
 ```
 
 ### P23 – Geburah → Hod
@@ -360,7 +360,7 @@ Path23(state) => yieldProcess(state)
 
 Cavity-aware form
 ```python  
-null  
+Path23_DA(state) => { let p = yieldProcess(state); if (p.starvationDetected()) forceResume(); return p; }  
 ```
 
 ### P24 – Tiphareth → Netzach
@@ -379,7 +379,7 @@ Path24(state) => resetState(state)
 
 Cavity-aware form
 ```python  
-null  
+Path24_DA(state) => { if (detectUseAfterFree(state)) throw MemoryCorruption; return resetState(state); }  
 ```
 
 ### P25 – Tiphareth → Yesod
@@ -398,7 +398,7 @@ Path25(state) => injectDependency(state.foundation, state.ego)
 
 Cavity-aware form
 ```python  
-null  
+Path25_DA(state) => { if (detectCircularDependency(state.foundation)) throw StackOverflow; return injectDependency(state); }  
 ```
 
 ### P26 – Tiphareth → Hod
@@ -417,7 +417,7 @@ Path26(state) => logTrace(state.illusion)
 
 Cavity-aware form
 ```python  
-null  
+Path26_DA(state) => { if (logFloodDetected()) throttleLogs(); return logTrace(state.illusion); }  
 ```
 
 ### P27 – Netzach → Hod
@@ -436,7 +436,7 @@ Path27(state) => throw SystemCrashException(state.pressure)
 
 Cavity-aware form
 ```python  
-null  
+Path27_DA(state) => { if (!hasErrorHandler(state)) escalateToKernel(); throw SystemCrashException(state); }  
 ```
 
 ### P28 – Netzach → Yesod
@@ -455,7 +455,7 @@ Path28(state) => serialize(state.emotion)
 
 Cavity-aware form
 ```python  
-null  
+Path28_DA(state) => { let s = serialize(state); if (isCorrupt(s)) dropPayload(); return s; }  
 ```
 
 ### P29 – Netzach → Malkuth
@@ -474,7 +474,7 @@ Path29(state) => runBackgroundDaemon(state.drive)
 
 Cavity-aware form
 ```python  
-null  
+Path29_DA(state) => { let d = runBackgroundDaemon(state); if (d.isZombie()) killProcess(d); return d; }  
 ```
 
 ### P30 – Hod → Yesod
@@ -493,7 +493,7 @@ Path30(state) => defineClass(state.blueprint)
 
 Cavity-aware form
 ```python  
-null  
+Path30_DA(state) => { if (!validateSchema(state.blueprint)) throw InvalidArchitecture; return defineClass(state.blueprint); }  
 ```
 
 ### P31 – Hod → Malkuth
@@ -512,7 +512,7 @@ Path31(state) => broadcast(state.signal)
 
 Cavity-aware form
 ```python  
-null  
+Path31_DA(state) => { if (broadcastStormDetected()) implementBackoff(); return broadcast(state.signal); }  
 ```
 
 ### P32 – Yesod → Malkuth
@@ -531,5 +531,5 @@ Path32(state) => renderAndExit(state.final_form)
 
 Cavity-aware form
 ```python  
-null  
+Path32_DA(state) => { if (orphanedResourcesExist()) forceCleanup(); return renderAndExit(state.final_form); }  
 ```
