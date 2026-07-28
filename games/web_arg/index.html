@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMARG-PHIRERA ARCHIVE ACCESS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container glitch-container">
+        <header>
+            <h1>OMARG-PHIRERA // SECTOR 7</h1>
+            <p id="system-status">SYSTEM STATUS: <span class="warning">LOCKDOWN INITIATED</span></p>
+            <p>Hash Reference: <span class="hash">c84fca11c9f2edae8b64eeb280e2f14fe3351621db00532f4ee21ce2e5dfc4a2</span></p>
+        </header>
+
+        <main>
+            <div class="terminal-box">
+                <p class="scramble-text">Authentication required to view sensitive materials.</p>
+                <p>Enter Path Operator Override:</p>
+                
+                <form id="login-form">
+                    <span class="prompt">OMARG_SYS></span>
+                    <input type="text" id="password" autocomplete="off" spellcheck="false" autofocus>
+                    <button type="submit" class="hidden-btn">SUBMIT</button>
+                </form>
+
+                <p id="error-msg" class="hidden error">Access denied. Invalid operator.</p>
+                
+                <div id="success-panel" class="hidden">
+                    <p class="success">ACCESS GRANTED.</p>
+                    <p>Decrypting payload...</p>
+                    <a href="secret_document.md" id="secret-link" target="_blank">[DOWNLOAD OP_GUIDE_REDACTED.MD]</a>
+                </div>
+            </div>
+            
+            <div class="image-clue">
+                <!-- EXIF data in this image contains a secondary clue -->
+                <img src="anomaly_scan.jpg" alt="Anomaly Scan 7" class="dimmed-img">
+            </div>
+
+            <!-- Steganographic Clue: Base64 for "PATH_ID: P11" -->
+            <pre class="hidden-clue" aria-hidden="true" style="opacity: 0.05; font-size: 0.5rem; user-select: text;">
+                UEFUSF9JRDogUDEx
+            </pre>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
