@@ -57,6 +57,9 @@ Field and experimental protocols, adapted from open-source investigation framewo
 - [Symbolic Experimentation](practice/symbolic-experimentation.md) — How to run recursive symbolic experiments
 - [Practitioner Readiness](practice/practitioner-readiness.md) — Physical conditioning and wellness
 
+### [References](references/)
+- [Bibliography (Thelema Libers)](references/bibliography.md) — Local archive of reference texts
+
 ### [Community](community/)
 - [Practitioner Recruitment](community/practitioner-recruitment.md) — Outreach and engagement
 - [Indigenous Consultation](community/indigenous-consultation.md) — Respectful community partnership
