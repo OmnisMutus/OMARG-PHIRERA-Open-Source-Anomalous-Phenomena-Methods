@@ -14,6 +14,7 @@ The 10 operators correspond to the Kabbalistic Sephirot, acting as generic symbo
 | 1 | Kether (כתר) | The ineffable Crown, Ain Sof – pure, undifferentiated potential. | **O – Origin** | Seed state s₀; the "first spark" before any computation. | Alchemy → Prima Materia; Jung → Self (transcendent); Kashmir → Cit (pure consciousness); Illuminism → True Will (unexpressed); CS → Powered-on, no program; Cybernetics → Full state-space; Quietism → Tao before naming. |
 | 2 | Chokmah (חכמה) | Flash of masculine, expansive insight – the first emanation. | **D – Differentiation** (the "what") | A burst of raw energy that splits the unity. | Alchemy → Sulfur (active principle); Jung → Logos; Kashmir → First spanda of light; Illuminism → Divine command; Dynamical-Systems → Perturbation. |
 | 3 | Binah (בינה) | Feminine, receptive form-giver – gives shape to Chokmah. | **C – Constraint** (the "how") | Imposes boundaries, turning flash into a definable pattern. | Alchemy → Salt (fixing); Jung → Eros (connecting); Kashmir → Vimarśa (reflection); Illuminism → Intellectual formulation; Dynamical-Systems → Boundary conditions. |
+| — | *Da'ath (דעת)* | The Abyss, invisible pseudo-Sephirah, Knowledge. | **∅ – The Cavity** | Consumes state; the gap between Supernals and Ruach. | Alchemy → The Void; Jung → The Unconscious Abyss; CS → Memory Leak / Null Pointer / /dev/null; Cybernetics → Black Box. |
 | 4 | Chesed (חסד) | Loving-kindness, unbounded expansion, generosity. | **R – Relation** (expansive) | Adds, connects, proliferates without restriction. | Alchemy → Solve (dissolution); Jung → Great Mother; Kashmir → Icchā Śakti (will to expand); CS → Graph-growth function; Post-Structuralism → Productive desire. |
 | 5 | Geburah (גבורה) | Severity, judgment, disciplined limitation. | **C – Constraint** (restrictive) | Subtracts, cuts, sharpens the flow. | Alchemy → Separatio (cutting); Jung → Shadow (critical function); Kashmir → Kriyā Śakti (action-contract); CS → Filter/constraint-solver; Post-Structuralism → Territorialisation. |
 | 6 | Tiphareth (תפארת) | Beauty, balance, the heart-center, sacrifice. | **I – Integration** | Synthesises opposite forces into a coherent whole. | Alchemy → Rubedo (red-work); Jung → Ego in balanced relation to Self; Kashmir → Heart-union of Shiva & Shakti; Illuminism → Knowledge + Conversation with HGA; Cybernetics → Homeostasis; Dynamical-Systems → Stable (often strange) attractor. |
@@ -96,6 +97,13 @@ Based on historical comparative mysticism and the universal scaffold:
 *   **Kashmir Shaivism**: Vimarśa (the reflective, self-aware capacity) that gives form to the light of prakāśa. Śakti as Icchā-Śakti (power of will).
 *   **Scientific Illuminism**: The intellectual formulation and comprehension of the Will. The Nuit principle (infinitely expanded circumference).
 *   **Dynamical Systems**: The boundary conditions, attractor geometry, and phase-space manifold that shape the system's evolution.
+
+### [INVISIBLE] DA'ATH (דעת) - KNOWLEDGE - Operator ∅ (The Cavity)
+*   **Alchemy**: The Void, the Abyss. The space where the old structure is completely lost before a new one can be born.
+*   **Jungian**: The terrifying encounter with the Absolute Unconscious; ego-death; the gap between the archetypal world and the personal psyche.
+*   **Kabbalistic Tradition**: The "invisible Sephirah" situated over the Abyss. It is the union of Chokmah and Binah, but exists on a lower plane, representing the point where divine knowledge drops into manifestation (or is lost).
+*   **Computer Science**: The `null` state, memory leak, `/dev/null` consumption buffer, or an unhandled exception that crashes the stack.
+*   **Cybernetics**: A black box component that consumes input without producing predictable output; a total loss of signal.
 
 ### 4. CHESED (חסד) - LOVING-KINDNESS - Operator R (Relation-Expansive)
 *   **Alchemy**: The Solve stage – dissolution, making fluid, expanding possibilities, "make the fixed volatile."
