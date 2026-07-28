@@ -118,7 +118,7 @@ def main():
     ingest_feedback(raw_content, source_type=source, dry_run=args.dry)
     
     if not args.dry:
-        print(f"[✓] Payload stored. Successfully scrubbed and ingested {file_path.name}")
+        print(f"[SUCCESS] Payload stored. Successfully scrubbed and ingested {file_path.name}")
     sys.exit(0)
 
 if __name__ == "__main__":
