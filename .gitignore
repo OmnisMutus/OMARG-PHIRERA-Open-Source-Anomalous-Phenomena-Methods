@@ -1,0 +1,4 @@
+# Ignore downloaded reference books to prevent repository bloat
+references/libers/*.pdf
+references/libers/*.epub
+references/libers/*.txt
