@@ -55,6 +55,6 @@ For a recursive system to be computationally and psychologically safe, it must p
 ## Measurement
 
 Every transformation within this system is measurable:
-1. **Diagnostic Measurement**: The `symbolic_debugger` provides a metric of state via keyword frequency counts, rendering the dominant Sephira as a mathematically verifiable state vector.
+1. **Diagnostic Measurement**: The `symbolic_debugger` provides a metric of state via keyword frequency counts, rendering the dominant Sephira as a mathematically verifiable state vector (emitting metrics such as `dominant_sephirah` and `confidence_score`).
 2. **Generative Measurement**: The `ritual_compiler` provides a discrete progress metric via the number of path-steps completed toward Malkuth.
 3. **Phenomenological Anchors**: While empirical testing is pending, specific harmonic frequencies or geometric visualizations (like the Quadratura) can act as measurable sensory correlates to these abstract mathematical states, bridging the gap between formal computation and lived experience.
