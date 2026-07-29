@@ -297,6 +297,7 @@ export default function Home() {
               className="btn"
               onClick={startRitual}
               disabled={isSorting || !inputText.trim()}
+              suppressHydrationWarning
             >
               {isSorting ? "Sorting..." : "/sort-state"}
             </button>
