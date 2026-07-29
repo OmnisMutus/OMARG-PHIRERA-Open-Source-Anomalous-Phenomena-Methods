@@ -1,7 +1,7 @@
 "use client";
 
-import HeaderAuditDashboard from "../../components/HeaderAuditDashboard";
-import PrivacySeal from "../../components/PrivacySeal";
+import HeaderAuditDashboard from "@/components/HeaderAuditDashboard";
+import PrivacySeal from "@/components/PrivacySeal";
 
 export default function AuditDashboardPage() {
   const badgeUrl = "https://github.com/OmnisMutus/OMARG-PHIRERA-Open-Source-Anomalous-Phenomena-Methods/actions/workflows/header-audit.yml/badge.svg";

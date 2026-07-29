@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import PrivacySeal from '../../components/PrivacySeal';
-import { calculateEntropy, diagnoseSephira } from '../../lib/symbolicDebugger';
+import PrivacySeal from '@/components/PrivacySeal';
+import { calculateEntropy, diagnoseSephira } from '@/lib/symbolicDebugger';
 
 const ALL_TRADITIONS = [
   "Kabbalah",

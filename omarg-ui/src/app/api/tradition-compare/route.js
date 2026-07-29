@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
-import { evaluateSovereigntyMetadata } from '../../../lib/agencyBudget';
+import { evaluateSovereigntyMetadata } from '@/lib/agencyBudget';
 
 async function getMappings() {
   const jsonDirectory = path.join(process.cwd(), 'public/mappings');
