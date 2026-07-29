@@ -1,13 +1,13 @@
-2026-07-29 01:24:46,544 |     INFO | Loaded 22 cipher entries from hermetic_qabalah.json
-2026-07-29 01:24:46,557 |     INFO | [START] Running self-test suite...
-2026-07-29 01:24:46,557 |    DEBUG | No duplicate letters in JSON mapping.
-2026-07-29 01:24:46,557 |    DEBUG | All numeric ranges look healthy.
-2026-07-29 01:24:46,557 |    DEBUG | CALL -> lookup('ש')
-2026-07-29 01:24:46,557 |    DEBUG | RETURN <- lookup -> {'name': 'Shin', 'path_key_scale': 31, 'cipher_value': 300, 'tarot_trump': 'Judgement (XX)', 'element_planet_sefirah': 'Fire / Tooth'}
-2026-07-29 01:24:46,557 |    DEBUG | CALL -> compute_gamma([2.0, 1.0, 0.5])
-2026-07-29 01:24:46,557 |    DEBUG | RETURN <- compute_gamma -> 0.17536034702965475
-2026-07-29 01:24:46,557 |    DEBUG | CALL -> enrich_response(content='Demo response', logits=[2.0, 1.0, 0.5], alternatives=3, confidence_entropy=0.23, agency_attribution_index=0.7, post_dialogue_score=0.85)
-2026-07-29 01:24:46,557 |    DEBUG | RETURN <- enrich_response -> {'content': 'Demo response', 'sovereignty_metadata': {'directive_strength': 0.17536034702965475, 'confidence_entropy': 0.23, 'alternatives_presented': 3, 'agency_attribution_index': 0.7, 'drift_coefficient': 0.17536034702965475, 'post_dialogue_score': 0.85, 'max_gamma_cap': 0.85, 'sovereignty_guarantee': 'ALLOWABLE_AGENCY_BUDGET_RESPECTED'}}
-2026-07-29 01:24:46,557 |    DEBUG | CALL -> ingest_feedback(content='Test feedback prompt payload', source_type='self_test', dry_run=False)
-2026-07-29 01:24:46,559 |    DEBUG | RETURN <- ingest_feedback -> {'timestamp': '2026-07-29T05:24:46.558093+00:00', 'user_id_hash': '81149b8a173dcc04', 'dominant_sephira': None, 'patch': None, 'directive_strength_gamma': None, 'confidence_entropy_hc': None, 'agency_attribution_index': None, 'max_gamma_cap': 0.85, 'notes': '', 'source': 'self_test', 'data': 'Test feedback prompt payload'}
-2026-07-29 01:24:46,559 |     INFO | [SUCCESS] Self-test suite passed.
+2026-07-29 15:10:11,343 |     INFO | Loaded 22 cipher entries from hermetic_qabalah.json
+2026-07-29 15:10:12,279 |     INFO | [START] Running self-test suite...
+2026-07-29 15:10:12,279 |    DEBUG | No duplicate letters in JSON mapping.
+2026-07-29 15:10:12,279 |    DEBUG | All numeric ranges look healthy.
+2026-07-29 15:10:12,279 |    DEBUG | CALL -> lookup('ש')
+2026-07-29 15:10:12,279 |    DEBUG | RETURN <- lookup -> {'name': 'Shin', 'path_key_scale': 31, 'cipher_value': 300, 'tarot_trump': 'Judgement (XX)', 'element_planet_sefirah': 'Fire / Tooth'}
+2026-07-29 15:10:12,279 |    DEBUG | CALL -> compute_gamma([2.0, 1.0, 0.5])
+2026-07-29 15:10:12,279 |    DEBUG | RETURN <- compute_gamma -> 0.17536034702965475
+2026-07-29 15:10:12,279 |    DEBUG | CALL -> enrich_response(content='Demo response', logits=[2.0, 1.0, 0.5], alternatives=3, confidence_entropy=0.23, agency_attribution_index=0.7, post_dialogue_score=0.85)
+2026-07-29 15:10:12,279 |    DEBUG | RETURN <- enrich_response -> {'content': 'Demo response', 'sovereignty_metadata': {'directive_strength': 0.17536034702965475, 'confidence_entropy': 0.23, 'alternatives_presented': 3, 'agency_attribution_index': 0.7, 'drift_coefficient': 0.17536034702965475, 'post_dialogue_score': 0.85, 'max_gamma_cap': 0.85, 'sovereignty_guarantee': 'ALLOWABLE_AGENCY_BUDGET_RESPECTED'}}
+2026-07-29 15:10:12,280 |    DEBUG | CALL -> ingest_feedback(content='Test feedback prompt payload', source_type='self_test', dry_run=False)
+2026-07-29 15:10:12,282 |    DEBUG | RETURN <- ingest_feedback -> {'timestamp': '2026-07-29T19:10:12.280909+00:00', 'user_id_hash': '81149b8a173dcc04', 'dominant_sephira': None, 'patch': None, 'directive_strength_gamma': None, 'confidence_entropy_hc': None, 'agency_attribution_index': None, 'max_gamma_cap': 0.85, 'notes': '', 'source': 'self_test', 'data': 'Test feedback prompt payload'}
+2026-07-29 15:10:12,283 |     INFO | [SUCCESS] Self-test suite passed.
