@@ -9,7 +9,13 @@
                 "Neuroscience": "Amygdala activation"
             }
         },
-        "invitation": "This map is offered as a lens. Rewrite it to fit your tradition."
+        "invitation": "This map is offered as a lens. Rewrite it to fit your tradition.",
+        "delta_gamma_sovereignty": {
+            "formula": "Δ_{γ,τ}(s) = β(f(s) + γ ∫_0^τ s(t) dt)",
+            "max_gamma_cap": 0.85,
+            "min_alternatives_rule": 2,
+            "description": "Directive strength scalar γ controls system push vs user agency."
+        }
     },
     "sephirot": {
         "Kether": {

@@ -61,9 +61,10 @@ def parse_metrics_from_text(text):
         
     return dominant, patch
 
-def ingest_feedback(content, source_type="unknown", dry_run=False):
+def ingest_feedback(content, source_type="unknown", dry_run=False, directive_strength=None, confidence_entropy=None, agency_attribution_index=None):
     """
     Scrubs content and appends it to the JSONL dataset.
+    Includes Δ-γ directive strength and sovereignty metrics.
     """
     scrubbed_content = scrub_pii(content)
     
@@ -73,8 +74,12 @@ def ingest_feedback(content, source_type="unknown", dry_run=False):
     payload = {
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "user_id_hash": generate_user_hash(),
-        "dominant_sephirah": extracted_dominant,
+        "dominant_sephira": extracted_dominant,
         "patch": extracted_patch,
+        "directive_strength_gamma": directive_strength,
+        "confidence_entropy_hc": confidence_entropy,
+        "agency_attribution_index": agency_attribution_index,
+        "max_gamma_cap": 0.85,
         "notes": "",
         "source": source_type,
         "data": scrubbed_content
