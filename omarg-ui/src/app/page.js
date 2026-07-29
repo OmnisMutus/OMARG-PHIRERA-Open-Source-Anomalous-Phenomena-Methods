@@ -7,11 +7,18 @@ import { ALGO_MAP, mergeSort } from '../lib/sephiroticSorting';
 import beatMap from '../lib/beatmap.json' with { type: "json" };
 import { RitualScheduler } from '../lib/uiScheduler';
 import { UIFlow } from '../lib/uiFlow';
+import OnboardingModal from '../components/OnboardingModal';
 
 const CAVEATS = [
   "This is a snapshot, not a score.",
   "Measures coherence, not correctness.",
   "Pattern detection, not diagnosis."
+];
+
+const SAMPLE_PRESETS = [
+  { label: "⚡ Rigid & Stuck", text: "I feel rigid and stuck, unable to move forward or make decisions." },
+  { label: "🌀 Scattered & Overwhelmed", text: "I am completely scattered, overwhelmed by endless options and analytical chaos." },
+  { label: "⚖️ Harmonizing Forces", text: "Seeking balance and harmony between opposing desires and inner conflict." }
 ];
 
 // Simple Web Audio API for ritual sounds
@@ -231,6 +238,8 @@ export default function Home() {
           </div>
           
           <div className="flex flex-wrap items-center gap-3">
+            <OnboardingModal />
+
             <a 
               href="/compare" 
               className="text-xs font-mono tracking-wider uppercase px-3 py-1.5 rounded border border-yellow-500/40 text-yellow-400 bg-yellow-500/10 hover:bg-yellow-500/20 transition"
@@ -277,12 +286,29 @@ export default function Home() {
           {/* Left Control & Input Deck (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-mono text-gray-400 uppercase tracking-widest">
-                Utterance Input (State Injection)
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+                  Utterance Input (State Injection)
+                </label>
+              </div>
+              
+              {/* Sample Presets Quick-Load Chips */}
+              <div className="flex flex-wrap gap-1.5 mb-1">
+                {SAMPLE_PRESETS.map((preset, idx) => (
+                  <button
+                    key={idx}
+                    disabled={isSorting || isComplete}
+                    onClick={() => setInputText(preset.text)}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-400 hover:text-yellow-300 hover:border-yellow-500/40 transition disabled:opacity-30"
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+
               <textarea 
                 className="input-area w-full h-36 bg-black/50 border border-white/10 rounded-xl p-4 text-sm text-gray-100 placeholder-gray-600 focus:border-white/30 outline-none transition resize-none font-mono"
-                placeholder="Describe your current state. (e.g. 'I feel rigid and stuck, unable to move forward')"
+                placeholder="Describe your current state or select a preset chip above..."
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 disabled={isSorting || isComplete}
