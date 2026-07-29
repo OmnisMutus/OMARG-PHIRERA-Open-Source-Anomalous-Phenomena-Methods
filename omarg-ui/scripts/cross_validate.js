@@ -2,11 +2,25 @@ const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-// We use dynamic import for the ES module since this is a commonjs script
 async function runValidation() {
-    console.log("Initializing Cross-Validation Test...");
+    console.log("Initializing Cross-Validation & Security-Hardening Test Suite...");
     
-    // Load the JS debugger
+    // 1. Assert Privacy & Security Headers Config
+    const nextConfigPath = path.join(__dirname, '..', 'next.config.mjs');
+    const nextConfig = fs.readFileSync(nextConfigPath, 'utf8');
+    
+    if (
+        nextConfig.includes("Content-Security-Policy") &&
+        nextConfig.includes("no-store, no-cache, must-revalidate") &&
+        nextConfig.includes("X-Content-Type-Options")
+    ) {
+        console.log("[SECURITY CHECK] Defensive Security & Privacy Headers Verified.");
+    } else {
+        console.error("[SECURITY CHECK ERROR] Defensive Privacy Headers missing from next.config.mjs");
+        process.exit(1);
+    }
+
+    // 2. Load the JS debugger
     const { diagnoseSephira } = await import('../src/lib/symbolicDebugger.js');
     
     // Load the API to get keywords
@@ -22,7 +36,6 @@ async function runValidation() {
     const phrases = [];
     for (let i = 0; i < 100; i++) {
         let phrase = "I feel ";
-        // Pick 1 to 5 random keywords
         const numWords = Math.floor(Math.random() * 5) + 1;
         for (let j = 0; j < numWords; j++) {
             phrase += allKeywords[Math.floor(Math.random() * allKeywords.length)] + " ";
@@ -30,7 +43,7 @@ async function runValidation() {
         phrases.push(phrase.trim());
     }
     
-    // Some edge cases
+    // Edge cases
     phrases.push("completely scattered and overwhelmed");
     phrases.push("rigid angry harsh stuck");
     phrases.push("no keywords here just normal text");
@@ -44,12 +57,8 @@ async function runValidation() {
     console.log(`Running ${phrases.length} phrases through Python and JS engines...`);
     
     for (const phrase of phrases) {
-        // Run JS
         const jsResult = diagnoseSephira(phrase) || "None";
         
-        // Run Python
-        // We grep the dominant sephira from the CLI output
-        // Example output line: "Dominant Sephirah : Geburah"
         try {
             const pyOutput = execSync(`python "${pyScript}" "${phrase}"`, { env: { ...process.env, PYTHONIOENCODING: 'utf-8' } }).toString();
             let pyResult = "None";
@@ -75,12 +84,12 @@ async function runValidation() {
         }
     }
     
-    console.log(`\n--- Cross-Validation Results ---`);
+    console.log(`\n--- Test Suite Summary ---`);
     console.log(`Passed: ${passed}`);
     console.log(`Failed: ${failed}`);
     
     if (failed === 0) {
-        console.log(`\n[SUCCESS] 100% Isomorphism Verified.`);
+        console.log(`\n[SUCCESS] 100% Isomorphism & Privacy Architecture Verified.`);
         process.exit(0);
     } else {
         console.log(`\n[ERROR] Divergence detected. The framework is compromised.`);
