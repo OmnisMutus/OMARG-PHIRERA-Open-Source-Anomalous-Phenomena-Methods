@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
+import { evaluateSovereigntyMetadata } from '../../lib/agencyBudget';
 
 async function getMappings() {
   const jsonDirectory = path.join(process.cwd(), 'public/mappings');
@@ -73,8 +74,13 @@ export async function POST(request) {
       translationPath = `No direct shared operators found. To translate, a higher-order transformation from [${sourceOps.join(", ")}] to [${targetOps.join(", ")}] is required.`;
     }
 
+    // Evaluate Sovereignty Metadata (Delta_gamma,tau)
+    const logits = [2.0, 1.2, 0.5]; // Example candidate action logits
+    const sovereigntyMetadata = evaluateSovereigntyMetadata(logits, Math.max(2, sharedOps.length));
+
     const response = NextResponse.json({
       ephemeral_status: "STATISTICALLY_STATELESS_NO_LOGGING",
+      sovereignty_metadata: sovereigntyMetadata,
       comparison: {
         source: {
           name: sourceTradition,
