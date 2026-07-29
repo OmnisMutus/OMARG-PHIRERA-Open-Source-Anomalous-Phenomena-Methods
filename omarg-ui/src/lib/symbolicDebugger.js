@@ -28,7 +28,7 @@ export function stringToChaoticArray(str) {
     }
     
     // Convert to objects with unique IDs for React rendering
-    return arr.map((val, idx) => ({ id: `node-${idx}-${val}`, value: val }));
+    return arr.map((val, idx) => ({ id: `node-${idx}-${val}-${Math.random().toString(36).substr(2, 6)}`, value: val }));
 }
 
 // Prepare the keyword map just like Python:
