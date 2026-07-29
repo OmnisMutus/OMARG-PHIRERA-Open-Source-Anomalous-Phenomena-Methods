@@ -192,6 +192,9 @@ export default function Home() {
         <header className="mb-4 text-center">
           <h1 className="title">OMARG OBSERVATORY</h1>
           <p className="subtitle">The Mirror of Tikun</p>
+          <div className="flex justify-center gap-4 mt-2 mb-2">
+            <a href="/compare" className="text-xs text-yellow-500 hover:text-yellow-400 font-mono tracking-widest uppercase border border-yellow-500/30 px-3 py-1 rounded bg-yellow-500/10">Launch Meta-Cartography Engine</a>
+          </div>
           <div className="flex justify-center gap-4 mt-2">
             <button 
               className="text-xs text-gray-500 hover:text-gray-300"
