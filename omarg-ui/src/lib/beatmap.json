@@ -1,0 +1,10 @@
+{
+  "bpm": 132,
+  "sections": [
+    { "label": "intro",   "start": 0.0,   "signature": "4/4",  "duration": 8.2 },
+    { "label": "verse1",  "start": 8.2,   "signature": "12/7", "duration": 13.7 },
+    { "label": "bridge",  "start": 21.9,  "signature": "7/8",  "duration": 6.4 },
+    { "label": "chorus",  "start": 28.3,  "signature": "5/8",  "duration": 9.1 },
+    { "label": "outro",   "start": 37.4,  "signature": "4/4",  "duration": 7.0 }
+  ]
+}

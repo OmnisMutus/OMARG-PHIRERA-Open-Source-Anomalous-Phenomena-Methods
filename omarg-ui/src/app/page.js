@@ -4,6 +4,9 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { stringToChaoticArray, diagnoseSephira, calculateEntropy } from '../lib/symbolicDebugger';
 import { ALGO_MAP, mergeSort } from '../lib/sephiroticSorting';
+import beatMap from '../lib/beatmap.json' with { type: "json" };
+import { RitualScheduler } from '../lib/uiScheduler';
+import { UIFlow } from '../lib/uiFlow';
 
 const CAVEATS = [
   "This is a snapshot, not a score.",
@@ -157,6 +160,16 @@ export default function Home() {
     generatorRef.current = sortAlgo(initialArray);
     setIsSorting(true);
     setStatus(`Diagnosis: ${diagnosedSephira || 'Unknown'}. Initiating Tikun...`);
+
+    // 5. Start Timeline Scheduler
+    if (audioRef.current?.ctx) {
+      if (!schedulerRef.current) {
+        schedulerRef.current = new RitualScheduler(beatMap, (section) => {
+          UIFlow.transitionTo(section, 1.0 - hs);
+        });
+      }
+      schedulerRef.current.start(audioRef.current.ctx);
+    }
   };
 
   const stepSort = () => {

@@ -6,10 +6,26 @@
   --accent: #3b82f6;
   --accent-glow: rgba(59, 130, 246, 0.5);
   
+  --sephira-h: 200;
+  --sephira-s: 30%;
+  --sephira-v: 10%;
+  --jitter: 0px;
+  --flash-bg: transparent;
+
   --sephira-hod: #f59e0b; /* Orange/Splendor */
   --sephira-geburah: #ef4444; /* Red/Severity */
   --sephira-chokmah: #8b5cf6; /* Purple/Wisdom */
   --sephira-tifereth: #eab308; /* Yellow/Beauty */
+}
+
+html {
+  background: hsl(var(--sephira-h), var(--sephira-s), var(--sephira-v));
+  transition: background 0.6s ease-out;
+}
+
+.flash-active {
+  background-color: var(--flash-bg) !important;
+  transition: none !important;
 }
 
 * {
