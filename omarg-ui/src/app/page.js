@@ -251,7 +251,7 @@ export default function Home() {
               
               return (
                 <motion.div
-                  key={node.id}
+                  key={`${node.id}-${index}`}
                   layout
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
