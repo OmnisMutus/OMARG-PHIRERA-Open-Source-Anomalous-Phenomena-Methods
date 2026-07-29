@@ -216,132 +216,170 @@ export default function Home() {
   const visibleNodes = nodes.slice(0, 20);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 lg:p-24 relative z-10">
-      <div className="w-full max-w-4xl glass-container">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 lg:p-12 relative z-10 font-sans text-gray-100">
+      <div className="w-full max-w-6xl glass-container border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl bg-black/40">
         
-        <header className="mb-4 text-center">
-          <h1 className="title">OMARG OBSERVATORY</h1>
-          <p className="subtitle">The Mirror of Tikun</p>
-          <div className="flex justify-center gap-4 mt-2 mb-2">
-            <a href="/compare" className="text-xs text-yellow-500 hover:text-yellow-400 font-mono tracking-widest uppercase border border-yellow-500/30 px-3 py-1 rounded bg-yellow-500/10">Launch Meta-Cartography Engine</a>
+        {/* Top Consolidated Command Bar */}
+        <header className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-white/10 gap-4">
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              OMARG OBSERVATORY
+            </h1>
+            <p className="text-xs text-gray-400 font-mono tracking-widest uppercase mt-1">
+              The Mirror of Tikun
+            </p>
           </div>
-          <div className="flex justify-center gap-4 mt-2">
+          
+          <div className="flex flex-wrap items-center gap-3">
+            <a 
+              href="/compare" 
+              className="text-xs font-mono tracking-wider uppercase px-3 py-1.5 rounded border border-yellow-500/40 text-yellow-400 bg-yellow-500/10 hover:bg-yellow-500/20 transition"
+            >
+              Meta-Cartography Engine
+            </a>
+            
             <button 
-              className="text-xs text-gray-500 hover:text-gray-300"
+              className="text-xs font-mono px-3 py-1.5 rounded border border-white/10 text-gray-400 hover:text-white bg-white/5 transition"
               onClick={() => setSoundEnabled(!soundEnabled)}
             >
               Sound: {soundEnabled ? "ON" : "OFF"}
             </button>
+            
             <select 
-              className="bg-transparent text-xs text-gray-500 border border-gray-700 rounded px-2"
+              className="bg-black/60 text-xs font-mono text-gray-300 border border-white/10 rounded px-3 py-1.5 outline-none focus:border-white/30"
               value={tradition}
               onChange={(e) => setTradition(e.target.value)}
             >
-              <option value="Kabbalah">Viewing through: Kabbalah</option>
-              <option value="Zen">Viewing through: Zen</option>
-              <option value="CBT">Viewing through: CBT</option>
-              <option value="Neuroscience">Viewing through: Neuroscience</option>
+              <option value="Kabbalah">Kabbalah</option>
+              <option value="Zen">Zen</option>
+              <option value="CBT">CBT</option>
+              <option value="Neuroscience">Neuroscience</option>
             </select>
           </div>
         </header>
         
-        {/* Anti-Optimization Metric Display */}
-        <div className="text-center mb-6 h-6">
-          {(isSorting || isComplete) && (
-            <div className="text-xs font-mono text-yellow-400/80 animate-fade-in">
-              <span className="font-bold text-white">Hₛ = {entropy.toFixed(2)}</span> | {currentCaveat}
-            </div>
-          )}
-        </div>
-
-        {/* The Sorting Arena */}
-        <div className={`arena mb-4 sephira-${sephira || 'none'} ${isComplete ? 'complete' : ''}`}>
-          <AnimatePresence>
-            {visibleNodes.map((node, index) => {
-              const isActive = activeIndices.includes(index);
-              const height = Math.max(20, (node.value / 100) * 200);
-              const isTohu = !isSorting && !isComplete && nodes.length > 0;
-              
-              return (
-                <motion.div
-                  key={`${node.id}-${index}`}
-                  layout
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className={`node ${isActive ? 'active' : ''} ${isTohu ? 'tohu' : ''}`}
-                  style={{ height: `${height}px` }}
-                >
-                  {node.value}
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-          
-          {nodes.length === 0 && (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-mono text-sm">
-              [ Awaiting State Injection ]
-            </div>
-          )}
-        </div>
-        
-        {nodes.length > 20 && (
-          <div className="text-center text-xs text-gray-500 mb-4">
-            Visualization simplified to 20 elements; full analysis logged.
+        {/* Anti-Optimization Metric Header Bar */}
+        <div className="flex items-center justify-between min-h-[32px] px-4 py-2 mb-6 rounded-lg bg-white/5 border border-white/5 font-mono text-xs text-gray-400">
+          <div>
+            <span className="text-gray-500">STATUS:</span> <span className="text-yellow-400">{status}</span>
           </div>
-        )}
-
-        {/* Status Output */}
-        <div className="mb-6 text-center">
-          <p className="status-text">{status}</p>
-        </div>
-
-        {/* Input Form */}
-        <div className="flex flex-col gap-4">
-          <textarea 
-            className="input-area"
-            placeholder="Describe your current state. (e.g. 'I feel rigid and stuck, unable to move forward' or 'I am completely scattered and overwhelmed')"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            disabled={isSorting || isComplete}
-          />
-          {!isComplete && (
-            <button 
-              className="btn"
-              onClick={startRitual}
-              disabled={isSorting || !inputText.trim()}
-              suppressHydrationWarning
-            >
-              {isSorting ? "Sorting..." : "/sort-state"}
-            </button>
+          {(isSorting || isComplete) && (
+            <div className="flex items-center gap-3">
+              <span className="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 font-bold">Hₛ = {entropy.toFixed(2)}</span>
+              <span className="text-gray-400 hidden sm:inline">| {currentCaveat}</span>
+            </div>
           )}
         </div>
 
-        {/* The Mirror Acknowledgment */}
-        <AnimatePresence>
-          {isComplete && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-8 p-6 rounded-lg border border-yellow-500/30 bg-yellow-500/10 text-center"
-            >
-              <h3 className="text-yellow-500 font-bold mb-4 uppercase tracking-widest text-sm">Poetics, Not Physics</h3>
-              <p className="text-sm text-gray-300 mb-6">
-                The sorting ritual you just witnessed is a symbolic mirror generated deterministically from your own words. 
-                The system diagnosed a dominant resonance of <strong className="text-white">{sephira}</strong>.
-                <br/><br/>
-                This is a syntax. Bring your semantics. The pattern is yours to interpret.
-              </p>
+        {/* 2-Column Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Control & Input Deck (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+                Utterance Input (State Injection)
+              </label>
+              <textarea 
+                className="input-area w-full h-36 bg-black/50 border border-white/10 rounded-xl p-4 text-sm text-gray-100 placeholder-gray-600 focus:border-white/30 outline-none transition resize-none font-mono"
+                placeholder="Describe your current state. (e.g. 'I feel rigid and stuck, unable to move forward')"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                disabled={isSorting || isComplete}
+              />
+            </div>
+            
+            {!isComplete && (
               <button 
-                className="btn w-full bg-yellow-600 hover:bg-yellow-500 text-black font-bold uppercase tracking-widest"
-                onClick={acknowledgeMirror}
+                className="w-full py-3 bg-white hover:bg-gray-200 text-black font-mono font-bold text-xs uppercase tracking-widest rounded-xl transition disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
+                onClick={startRitual}
+                disabled={isSorting || !inputText.trim()}
+                suppressHydrationWarning
               >
-                I See the Mirror
+                {isSorting ? "Sorting State..." : "/sort-state"}
               </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
+            )}
+
+            {/* The Mirror Acknowledgment Card */}
+            <AnimatePresence>
+              {isComplete && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-5 rounded-xl border border-yellow-500/30 bg-yellow-500/10 text-left space-y-4"
+                >
+                  <div className="flex items-center justify-between border-b border-yellow-500/20 pb-2">
+                    <h3 className="text-yellow-400 font-bold uppercase tracking-widest text-xs">
+                      Poetics, Not Physics
+                    </h3>
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300">
+                      {sephira}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-300 leading-relaxed font-sans">
+                    The sorting ritual you witnessed is a deterministic symbolic mirror. The system diagnosed a dominant resonance of <strong className="text-white font-mono">{sephira}</strong>.
+                    <br/><br/>
+                    This is a syntax. Bring your semantics.
+                  </p>
+                  <button 
+                    className="w-full py-2.5 bg-yellow-500 hover:bg-yellow-400 text-black font-mono font-bold text-xs uppercase tracking-widest rounded-lg transition"
+                    onClick={acknowledgeMirror}
+                  >
+                    I See the Mirror
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Right Visual Arena Deck (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-3">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+                Tikun Visual Arena
+              </span>
+              {nodes.length > 20 && (
+                <span className="text-[10px] font-mono text-gray-500">
+                  Showing 20 / {nodes.length} elements
+                </span>
+              )}
+            </div>
+
+            {/* Arena Container */}
+            <div className={`arena w-full min-h-[280px] bg-black/60 border border-white/10 rounded-xl p-4 flex items-end justify-center gap-1.5 relative overflow-hidden sephira-${sephira || 'none'} ${isComplete ? 'complete' : ''}`}>
+              <AnimatePresence>
+                {visibleNodes.map((node, index) => {
+                  const isActive = activeIndices.includes(index);
+                  const height = Math.max(24, (node.value / 100) * 220);
+                  const isTohu = !isSorting && !isComplete && nodes.length > 0;
+                  
+                  return (
+                    <motion.div
+                      key={`${node.id}-${index}`}
+                      layout
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      className={`node flex-1 max-w-[28px] rounded-t-md text-[10px] font-mono flex items-start justify-center pt-1 border transition-all ${isActive ? 'active' : ''} ${isTohu ? 'tohu' : ''}`}
+                      style={{ height: `${height}px` }}
+                    >
+                      {node.value}
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+              
+              {nodes.length === 0 && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-600 font-mono text-xs gap-2">
+                  <span className="w-2 h-2 rounded-full bg-gray-600 animate-ping"></span>
+                  [ Awaiting State Injection ]
+                </div>
+              )}
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </main>
   );
