@@ -72,3 +72,32 @@ This framework's power lies in providing a translation layer—a formal, symboli
 For example: "What is the Kabbalistic path of Gevurah (Severity) in Dynamical Systems terms?" Answer: A powerful Constraint (ω) operator that collapses possibility into a defined form, a necessary perturbation to prevent infinite chaotic diffusion.
 
 By situating itself at the intersection of mysticism, mathematics, and systems theory, Recursive Symbolics provides a rigorous language for describing phenomena that have historically been relegated to the domains of philosophy or religion, grounding them in the demonstrable mechanics of recursive rewriting.
+
+## The System Architecture as Sephirotic Symbiosis
+
+The concrete software implementation of Recursive Symbolics (Python CLI + Next.js Web Observatory) enacts this ontology directly through a set of Sephirotic polarities:
+
+```mermaid
+graph TD
+    Input["User Utterance (Malkuth)"] --> Debugger["Symbolic Debugger (Binah/Chokmah)"]
+    Debugger --> Delta["Delta-Operator Directivity Handle (Tiphareth)"]
+    Delta --> Enrichment["Metadata Enrichment (Netzach/Hod)"]
+    Enrichment --> UI["UI Reflection & Visual Arena (Yesod)"]
+    UI --> Feedback["Feedback Ingestion (Malkuth -> Iteration Cycle)"]
+```
+
+1. **Binah–Chokmah Polarity (Backend Rigor vs. Frontend Impulse)**:
+   - **Binah (Understanding / Structural Limit)**: Represented by the Python backend (`lookup.py`, `delta_operator.py`). It enforces mathematical rigor, logit vectorization, and static schema validation.
+   - **Chokmah (Wisdom / Generative Impulse)**: Represented by the JavaScript frontend (`page.js`, `compare/page.js`). It drives continuous UI animation, reactive audio feedback, and visual state rendering.
+   - **Tiphareth (Harmonious Unity)**: Reconciled through `symbolic_api.json`, which serves as the machine-readable middle path harmonizing backend mathematical rules with frontend reactive presentation.
+
+2. **Gevurah–Chesed Equilibrium (Privacy Boundary vs. Symbolic Expansion)**:
+   - **Gevurah (Severity / Protective Boundary)**: Enacted by the **Zero-Trust Client-Only Privacy Architecture**. Strict error sanitization, ephemeral browser memory processing, and local non-persisted telemetry enforce absolute boundaries around user consciousness data.
+   - **Chesed (Mercy / Boundless Expansion)**: Enables practitioners to explore expansive symbolic state spaces, multi-tradition cross-mappings, and sorting transformations without fear of surveillance or data leakage.
+
+This system architecture is mathematically isomorphic to the core axiom:
+\[
+S_{n+1} = F(S_n, E_n)
+\]
+Where every input utterance $E_n$ transforms state $S_n$ into $S_{n+1}$ through a self-correcting, privacy-bounded feedback loop.
+
