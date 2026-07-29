@@ -2,3 +2,11 @@
 references/libers/*.pdf
 references/libers/*.epub
 references/libers/*.txt
+
+# Python & Node artifacts
+__pycache__/
+*.pyc
+node_modules/
+.next/
+*.log
+

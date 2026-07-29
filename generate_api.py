@@ -358,8 +358,10 @@ for p in paths_data:
         "cavity_aware": p["cavity_aware"]
     }
 
-os.makedirs(r'c:\Users\joels\Desktop\gemini projects\Thoth\Recursive-Symbolics\tools', exist_ok=True)
-with open(r'c:\Users\joels\Desktop\gemini projects\Thoth\Recursive-Symbolics\tools\symbolic_api.json', 'w', encoding='utf-8') as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+tools_dir = os.path.join(BASE_DIR, 'tools')
+os.makedirs(tools_dir, exist_ok=True)
+with open(os.path.join(tools_dir, 'symbolic_api.json'), 'w', encoding='utf-8') as f:
     json.dump(api_data, f, indent=4, ensure_ascii=False)
 
 print("Regenerated tools/symbolic_api.json with the required schema.")

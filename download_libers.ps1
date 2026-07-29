@@ -1,7 +1,9 @@
 $ErrorActionPreference = 'Stop'
 $baseUrl = "https://thelema.tools/bot-books/aleister_crowley/libers/"
-$targetDir = "C:\Users\joels\Desktop\gemini projects\Thoth\Recursive-Symbolics\references\libers"
-$bibFile = "C:\Users\joels\Desktop\gemini projects\Thoth\Recursive-Symbolics\references\bibliography.md"
+$scriptDir = $PSScriptRoot
+if (-not $scriptDir) { $scriptDir = Get-Location }
+$targetDir = Join-Path $scriptDir "references\libers"
+$bibFile = Join-Path $scriptDir "references\bibliography.md"
 
 if (!(Test-Path $targetDir)) {
     New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
