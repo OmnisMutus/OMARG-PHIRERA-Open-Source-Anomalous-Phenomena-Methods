@@ -138,8 +138,16 @@ export function* mergeSort(arr) {
 }
 
 export const ALGO_MAP = {
-    "Hod": insertionSort,
-    "Geburah": selectionSort,
+    "Kether": quickSort,
     "Chokmah": quickSort,
-    "Tifereth": mergeSort
+    "Binah": insertionSort,
+    "Chesed": mergeSort,
+    "Geburah": selectionSort,
+    "Tiphareth": mergeSort,
+    "Tifereth": mergeSort,
+    "Netzach": insertionSort,
+    "Hod": insertionSort,
+    "Yesod": quickSort,
+    "Malkuth": selectionSort,
+    "Daath": mergeSort
 };

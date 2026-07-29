@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { stringToChaoticArray, diagnoseSephira, calculateEntropy } from '../lib/symbolicDebugger';
-import { ALGO_MAP } from '../lib/sephiroticSorting';
+import { ALGO_MAP, mergeSort } from '../lib/sephiroticSorting';
 
 const CAVEATS = [
   "This is a snapshot, not a score.",
@@ -150,8 +150,8 @@ export default function Home() {
     setSephira(diagnosedSephira || "Daath");
     setEntropy(hs);
     
-    // 3. Select Algorithm (Fallback to Merge if Daath)
-    const sortAlgo = ALGO_MAP[diagnosedSephira] || ALGO_MAP["Tiphareth"];
+    // 3. Select Algorithm (Fallback to Merge if unmapped)
+    const sortAlgo = ALGO_MAP[diagnosedSephira] || ALGO_MAP["Tiphareth"] || mergeSort;
     
     // 4. Initialize Generator
     generatorRef.current = sortAlgo(initialArray);
