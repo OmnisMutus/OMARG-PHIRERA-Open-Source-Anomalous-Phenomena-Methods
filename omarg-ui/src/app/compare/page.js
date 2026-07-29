@@ -470,10 +470,156 @@ export default function ComparePage() {
               </div>
             )}
 
+            {/* Cross-World Transcompiler (Zero-Ranking Rosetta Stone Widget) */}
+            <TranscompilerWidget />
+
           </div>
 
         </div>
       </div>
     </main>
+  );
+}
+
+function TranscompilerWidget() {
+  const [schema, setSchema] = useState(null);
+  const [selectedConcept, setSelectedConcept] = useState('anger');
+  const [selectedLens, setSelectedLens] = useState('');
+  const [customTradition, setCustomTradition] = useState('');
+  const [customReading, setCustomReading] = useState('');
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
+  useEffect(() => {
+    fetch('/mappings/symbolic_schema.json')
+      .then(res => res.json())
+      .then(data => setSchema(data))
+      .catch(err => console.error("Failed to load symbolic_schema.json", err));
+  }, []);
+
+  if (!schema) return null;
+
+  const concepts = Object.keys(schema.abstract_mapping);
+  const traditions = schema.traditions_registered;
+  const currentEntry = schema.abstract_mapping[selectedConcept] || {};
+  const sourceReading = selectedLens ? currentEntry[selectedLens] : null;
+
+  const handleAddCustom = () => {
+    if (!selectedConcept || !customTradition.trim() || !customReading.trim()) return;
+
+    const updatedSchema = { ...schema };
+    const tName = customTradition.trim();
+
+    if (!updatedSchema.traditions_registered.includes(tName)) {
+      updatedSchema.traditions_registered.push(tName);
+    }
+
+    updatedSchema.abstract_mapping[selectedConcept][tName] = customReading.trim();
+    setSchema(updatedSchema);
+    setCustomTradition('');
+    setCustomReading('');
+  };
+
+  return (
+    <div id="transcompiler-root" className="p-5 border border-yellow-500/30 bg-gradient-to-b from-gray-950 to-black rounded-xl text-gray-200 font-sans space-y-4">
+      <div>
+        <h3 className="text-sm font-mono font-bold text-yellow-400 uppercase tracking-widest">
+          Cross-World Transcompiler
+        </h3>
+        <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+          Pick a concept and a lens. This shows how other traditions would name the same experience — with <strong>zero ranking</strong> and <strong>no preferred ground truth</strong>.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+        <div>
+          <label className="block mb-1 text-gray-400">Concept</label>
+          <select 
+            className="w-full p-2 bg-gray-900 border border-gray-700 rounded text-gray-100 focus:border-yellow-500 outline-none"
+            value={selectedConcept}
+            onChange={(e) => setSelectedConcept(e.target.value)}
+          >
+            {concepts.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+
+        <div>
+          <label className="block mb-1 text-gray-400">Viewing through</label>
+          <select 
+            className="w-full p-2 bg-gray-900 border border-gray-700 rounded text-gray-100 focus:border-yellow-500 outline-none"
+            value={selectedLens}
+            onChange={(e) => setSelectedLens(e.target.value)}
+          >
+            <option value="">— choose a lens —</option>
+            {traditions.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Side-by-Side Reading Output */}
+      {selectedLens && (
+        <div className="space-y-3 pt-2">
+          {/* Source Reading */}
+          <div className="p-3 bg-yellow-950/20 border border-yellow-500/40 rounded-lg">
+            <span className="text-[10px] font-mono text-yellow-500 uppercase tracking-widest font-bold block">
+              {selectedLens} (Primary Lens)
+            </span>
+            <p className="text-sm text-yellow-200 mt-1 font-sans">
+              {sourceReading || <em className="text-gray-500">no reading registered yet</em>}
+            </p>
+          </div>
+
+          {/* Parallel Readings */}
+          <div className="text-[11px] font-mono text-gray-400 pt-1">
+            Parallel readings across other lenses:
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            {traditions.filter(t => t !== selectedLens).map(t => {
+              const reading = currentEntry[t];
+              return (
+                <div key={t} className="p-2.5 bg-black/60 border-l-2 border-gray-700 rounded-r-lg">
+                  <span className="text-[10px] font-mono text-gray-400 block font-bold">{t}</span>
+                  <p className={`text-xs mt-0.5 ${reading ? 'text-gray-200' : 'text-gray-600 italic'}`}>
+                    {reading || 'untranslated'}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Anti-Privilege Caveat */}
+          <div className="p-3 bg-indigo-950/20 border-l-4 border-indigo-500/60 rounded text-xs text-indigo-300 font-sans leading-relaxed">
+            {schema.meta.mapping_principle}
+          </div>
+        </div>
+      )}
+
+      {/* Add Custom Reading Expander */}
+      <details className="pt-2" open={isDetailsOpen} onToggle={(e) => setIsDetailsOpen(e.target.open)}>
+        <summary className="cursor-pointer text-xs font-mono text-yellow-500 hover:text-yellow-400 select-none">
+          + Add your own reading to schema
+        </summary>
+        <div className="mt-3 flex flex-col gap-2 font-mono text-xs">
+          <input 
+            className="p-2 bg-gray-900 border border-gray-700 rounded text-gray-100 placeholder-gray-500 outline-none focus:border-yellow-500"
+            placeholder="Tradition name (e.g. 'My Practice')"
+            value={customTradition}
+            onChange={(e) => setCustomTradition(e.target.value)}
+          />
+          <input 
+            className="p-2 bg-gray-900 border border-gray-700 rounded text-gray-100 placeholder-gray-500 outline-none focus:border-yellow-500"
+            placeholder="Your reading of this concept"
+            value={customReading}
+            onChange={(e) => setCustomReading(e.target.value)}
+          />
+          <button 
+            className="py-2 bg-yellow-600 hover:bg-yellow-500 text-black font-bold uppercase tracking-widest rounded transition"
+            onClick={handleAddCustom}
+          >
+            Add to Schema Memory
+          </button>
+        </div>
+      </details>
+    </div>
   );
 }
